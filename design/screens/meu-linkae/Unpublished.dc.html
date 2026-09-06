@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Baloo+2:wght@600;700&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+    a { color: #0115AD; text-decoration: none; }
+    a:hover { color: #0A0F7A; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FBFBFD; display:flex; flex-direction:column; padding:48px 64px; position:relative; overflow:hidden;">
+
+  <svg style="position:absolute; right:-40px; bottom:-40px; opacity:0.05;" width="260" height="260" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+    <circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+  </svg>
+
+  <!-- header -->
+  <div style="display:flex; align-items:center; justify-content:space-between; z-index:1;">
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="font-family:'Baloo 2', 'Montserrat', sans-serif; font-weight:700; font-size:22px; color:{{accent}}; letter-spacing:-0.01em;">link</span>
+      <span style="position:relative; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="2.2"/>
+          <circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="2.2"/>
+        </svg>
+      </span>
+      <span style="font-family:'Baloo 2', 'Montserrat', sans-serif; font-weight:700; font-size:22px; color:{{accent}}; letter-spacing:-0.01em;">aê</span>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+      <div style="width:40px; height:40px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:{{accent}};">M</div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M6 9l6 6 6-6" stroke="#8A8F9C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- main -->
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; z-index:1;">
+
+    <div style="text-align:center;">
+      <div style="font-size:38px; font-weight:700; color:#14151B; letter-spacing:-0.02em; margin-bottom:14px;">Oii, Marina!</div>
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:17px; font-weight:500; color:#3D414C;">
+        <span style="width:8px; height:8px; border-radius:50%; border:1.6px solid #9297A3; display:inline-block;"></span>
+        Sua vitrine ainda não está publicada
+      </div>
+      <div style="font-size:14px; color:#9297A3; margin-top:6px;">Vamos criar? Leva só alguns minutos.</div>
+    </div>
+
+    <!-- phone preview: empty state -->
+    <div style="width:250px; height:440px; border-radius:30px; background:#F3F4F7; border:1px dashed #C7CCD6; padding:20px 18px; display:flex; flex-direction:column; align-items:center; gap:10px; position:relative; cursor:pointer;">
+
+      <div style="width:56px; height:56px; border-radius:50%; border:1.6px dashed #C7CCD6; display:flex; align-items:center; justify-content:center; margin-top:6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v14M5 12h14" stroke="#B7BCC7" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div style="width:96px; height:11px; border-radius:6px; background:#E9EBF0;"></div>
+      <div style="width:70px; height:8px; border-radius:6px; background:#E9EBF0; margin-bottom:8px;"></div>
+
+      <div style="width:100%; display:flex; flex-direction:column; gap:7px;">
+        <div style="height:32px; border-radius:10px; border:1px dashed #D6DAE2;"></div>
+        <div style="height:32px; border-radius:10px; border:1px dashed #D6DAE2;"></div>
+      </div>
+
+      <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:0 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3l1.8 5.6L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.4L12 3z" stroke="{{accent}}" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <div style="font-size:10.5px; font-weight:600; color:#6B7080; line-height:1.4;">Sua vitrine está esperando por você</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:14px;">
+      <button style="background:{{accent}}; color:#FFFFFF; border:none; padding:14px 30px; border-radius:12px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:14.5px; cursor:pointer; box-shadow:0 10px 20px -8px rgba(1,21,173,0.45);">Editar vitrine</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>
