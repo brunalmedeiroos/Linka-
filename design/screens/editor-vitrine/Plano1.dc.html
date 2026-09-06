@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+    a { color: #0115AD; text-decoration: none; }
+    a:hover { color: #0A0F7A; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FFFFFF; display:flex; flex-direction:column; position:relative; overflow:hidden;">
+
+  <svg style="position:absolute; right:-30px; bottom:-30px; opacity:0.04; z-index:0;" width="200" height="200" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+    <circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+  </svg>
+
+  <!-- header -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:76px; min-height:76px; border-bottom:1px solid #EDEEF2; z-index:1;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:36px; height:36px; border-radius:10px; background:#F0F1F4; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#4B4F5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:16px; color:#14151B;">Editor da vitrine</div>
+        <div style="font-size:11.5px; color:#9297A3;">Vitrine de Marina · Template Aurora</div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:20px;">
+      <div style="display:flex; align-items:center; gap:7px; font-size:12.5px; color:#B8862B; font-weight:600;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#D9A441; display:inline-block;"></span>
+        Alterações não salvas
+      </div>
+      <button style="background:transparent; border:1.5px solid #DDE1E7; color:#14151B; padding:10px 18px; border-radius:11px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; cursor:pointer; display:flex; align-items:center; gap:7px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="12" height="12" rx="2.5" stroke="#14151B" stroke-width="1.8"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2" stroke="#14151B" stroke-width="1.8"/></svg>
+        Copiar meu link
+      </button>
+      <button style="background:{{accent}}; color:#FFFFFF; border:none; padding:10px 22px; border-radius:11px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; cursor:pointer; box-shadow:0 8px 16px -8px rgba(1,21,173,0.45);">Salvar</button>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div style="flex:1; display:flex; z-index:1;">
+
+    <!-- left: block list -->
+    <div style="width:56%; padding:28px 36px; overflow:hidden;">
+
+      <button style="display:flex; align-items:center; gap:8px; background:{{accent}}; color:#fff; border:none; padding:12px 20px; border-radius:12px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:13.5px; cursor:pointer; box-shadow:0 8px 16px -8px rgba(1,21,173,0.4);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        Adicionar
+      </button>
+
+      <div style="font-size:12.5px; color:#9297A3; margin-top:16px; line-height:1.5;">
+        Você está no template <strong style="color:#4B4F5A;">Aurora</strong>. A estrutura é fixa — personalize o conteúdo de cada bloco abaixo.
+      </div>
+
+      <!-- block list: fixed order, no drag handle, no delete on required block -->
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:18px;">
+
+        <div style="display:flex; align-items:center; gap:12px; background:#F5F7FF; border:1px solid #DCE1F5; border-radius:14px; padding:12px 14px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="{{accent}}" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:13.5px; color:#14151B;">Perfil</div>
+            <div style="font-size:11.5px; color:#7D87B8;">Sempre visível</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#7D87B8" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:14px; padding:12px 14px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:#EEF0F5; display:flex; align-items:center; justify-content:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="#5A5F6C" stroke-width="1.8"/><circle cx="15" cy="15" r="4.4" stroke="#5A5F6C" stroke-width="1.8"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:13.5px; color:#14151B;">Redes sociais</div>
+            <div style="font-size:11.5px; color:#9297A3;">3 redes conectadas</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#9297A3" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:14px; padding:12px 14px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:#EEF0F5; display:flex; align-items:center; justify-content:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="#5A5F6C" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 8v8l8 4 8-4V8" stroke="#5A5F6C" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:13.5px; color:#14151B;">Produtos</div>
+            <div style="font-size:11.5px; color:#9297A3;">3 produtos</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#9297A3" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:14px; padding:12px 14px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:#EEF0F5; display:flex; align-items:center; justify-content:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z" stroke="#5A5F6C" stroke-width="1.8"/><path d="M9 6V5a2 2 0 012-2h2a2 2 0 012 2v1" stroke="#5A5F6C" stroke-width="1.8"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:13.5px; color:#14151B;">Meu Portfólio</div>
+            <div style="font-size:11.5px; color:#9297A3;">Link externo</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#9297A3" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:14px; padding:12px 14px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:#EEF0F5; display:flex; align-items:center; justify-content:center;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19l1.3-3.6A7 7 0 1112 19a7 7 0 01-3.6-1L5 19z" stroke="#5A5F6C" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:13.5px; color:#14151B;">WhatsApp</div>
+            <div style="font-size:11.5px; color:#9297A3;">Contato direto</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#9297A3" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- right: live preview -->
+    <div style="width:44%; background:#F0F1F4; display:flex; align-items:center; justify-content:center; border-left:1px solid #EDEEF2;">
+      <div style="width:270px; height:500px; border-radius:32px; background:#FBFBFD; border:1px solid #E5E8EE; box-shadow:0 30px 60px -24px rgba(20,21,27,0.28); padding:22px 18px; display:flex; flex-direction:column; align-items:center; gap:9px;">
+
+        <div style="width:54px; height:54px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; margin-top:4px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="{{accent}}" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div style="font-weight:700; font-size:13px; color:#14151B;">Marina Silva</div>
+        <div style="font-size:10.5px; color:#8A8F9C; margin-bottom:4px;">Criadora de conteúdo · UGC</div>
+
+        <div style="display:flex; gap:8px; margin-bottom:6px;">
+          <div style="width:26px; height:26px; border-radius:50%; background:#EEF0F5;"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background:#EEF0F5;"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background:#EEF0F5;"></div>
+        </div>
+
+        <div style="width:100%; display:flex; flex-direction:column; gap:6px;">
+          <div style="height:30px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:9px;"></div>
+          <div style="height:30px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:9px;"></div>
+        </div>
+
+        <div style="width:100%; margin-top:6px; border-radius:12px; padding:6px;">
+          <div style="font-size:8.5px; font-weight:700; color:#9297A3; margin-bottom:5px; padding-left:2px;">PRODUTOS</div>
+          <div style="display:flex; gap:6px; overflow:hidden; height:52px;">
+            <div style="width:58px; height:52px; border-radius:8px; background:#FFFFFF; border:1px solid #E5E8EE; display:flex; flex-direction:column; padding:5px;">
+              <div style="flex:1; background:#E9EBF0; border-radius:4px;"></div>
+              <div style="font-size:7px; font-weight:700; color:{{accent}}; margin-top:2px;">R$97</div>
+            </div>
+            <div style="width:58px; height:52px; border-radius:8px; background:#FFFFFF; border:1px solid #E5E8EE; display:flex; flex-direction:column; padding:5px;">
+              <div style="flex:1; background:#E9EBF0; border-radius:4px;"></div>
+              <div style="font-size:7px; font-weight:700; color:{{accent}}; margin-top:2px;">R$47</div>
+            </div>
+            <div style="width:58px; height:52px; border-radius:8px; background:#FFFFFF; border:1px solid #E5E8EE; display:flex; flex-direction:column; padding:5px;">
+              <div style="flex:1; background:#E9EBF0; border-radius:4px;"></div>
+              <div style="font-size:7px; font-weight:700; color:{{accent}}; margin-top:2px;">R$150</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:100%; display:flex; flex-direction:column; gap:6px; margin-top:2px;">
+          <div style="height:30px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:9px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>

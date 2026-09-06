@@ -1,0 +1,11 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 900 },
+    { "file": "Plano1.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 900 }
+  ],
+  "annotations": [
+    { "id": "label-main", "x": 0, "y": -60, "w": 380, "text": "Plano 2 — liberdade total (abas, reordenar)" },
+    { "id": "label-plano1", "x": 1560, "y": -60, "w": 380, "text": "Plano 1 — template (estrutura fixa)" }
+  ],
+  "launch": { "view": "canvas" }
+}
