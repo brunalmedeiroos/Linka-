@@ -1,0 +1,11 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 900 },
+    { "file": "Plano2.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 900 }
+  ],
+  "annotations": [
+    { "id": "label-p1", "x": 0, "y": -60, "w": 320, "text": "Plano 1 — escolher template" },
+    { "id": "label-p2", "x": 1560, "y": -60, "w": 320, "text": "Plano 2 — ponto de partida" }
+  ],
+  "launch": { "view": "canvas" }
+}

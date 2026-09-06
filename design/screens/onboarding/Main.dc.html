@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Baloo+2:wght@700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FFFFFF; display:flex; flex-direction:column; align-items:center;">
+
+  <!-- header -->
+  <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px;">
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="font-family:'Baloo 2', sans-serif; font-weight:800; font-size:21px; color:{{accent}};">link</span>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="2.4"/></svg>
+      <span style="font-family:'Baloo 2', sans-serif; font-weight:800; font-size:21px; color:{{accent}};">aê</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div style="width:26px; height:6px; border-radius:999px; background:{{accent}};"></div>
+      <div style="width:26px; height:6px; border-radius:999px; background:#EEF0F5;"></div>
+      <div style="width:26px; height:6px; border-radius:999px; background:#EEF0F5;"></div>
+      <span style="font-size:11.5px; color:#9297A3; font-weight:600; margin-left:6px;">Passo 1 de 3</span>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; width:100%; padding:20px 0 60px;">
+
+    <div style="text-align:center;">
+      <div style="font-size:28px; font-weight:800; color:#14151B;">Vamos montar sua vitrine</div>
+      <div style="font-size:14px; color:#8A8F9C; margin-top:8px;">Escolha um template pra começar. Você personaliza tudo depois.</div>
+    </div>
+
+    <div style="display:flex; gap:22px;">
+
+      <!-- Aurora: selected -->
+      <div style="position:relative; width:200px;">
+        <div style="width:200px; height:270px; border-radius:20px; border:2.5px solid {{accent}}; box-shadow:0 16px 32px -16px rgba(1,21,173,0.35); padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; background:#F3F4F7;">
+          <div style="width:38px; height:38px; border-radius:50%; background:#DDE1E7; margin-top:2px;"></div>
+          <div style="width:70px; height:8px; border-radius:6px; background:#E9EBF0;"></div>
+          <div style="width:100%; display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+            <div style="height:24px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:8px;"></div>
+            <div style="height:24px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:8px;"></div>
+            <div style="height:24px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:8px;"></div>
+          </div>
+        </div>
+        <div style="position:absolute; top:10px; right:10px; width:22px; height:22px; border-radius:50%; background:{{accent}}; display:flex; align-items:center; justify-content:center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="text-align:center; margin-top:12px; font-size:13.5px; font-weight:700; color:#14151B;">Aurora</div>
+      </div>
+
+      <!-- Studio -->
+      <div style="width:200px;">
+        <div style="width:200px; height:270px; border-radius:20px; border:1px solid #E5E8EE; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; background:#33121C;">
+          <div style="width:38px; height:38px; border-radius:50%; padding:2px; background:linear-gradient(135deg,#E8C77A,#C9536B); margin-top:2px;"><div style="width:100%;height:100%;border-radius:50%;background:#4A2530;"></div></div>
+          <div style="width:70px; height:8px; border-radius:6px; background:rgba(255,255,255,0.15);"></div>
+          <div style="width:100%; display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+            <div style="height:24px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px;"></div>
+            <div style="height:24px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px;"></div>
+            <div style="height:24px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px;"></div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:12px; font-size:13.5px; font-weight:700; color:#14151B;">Studio</div>
+      </div>
+
+      <!-- Essencial -->
+      <div style="width:200px;">
+        <div style="width:200px; height:270px; border-radius:20px; border:1px solid #E5E8EE; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; background:#FFFFFF;">
+          <div style="width:38px; height:38px; border-radius:50%; background:#F0F1F4; border:1px solid #E5E8EE; margin-top:2px;"></div>
+          <div style="width:70px; height:8px; border-radius:6px; background:#EEF0F5;"></div>
+          <div style="width:100%; display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+            <div style="height:24px; border:1px solid #EEF0F5; border-radius:8px;"></div>
+            <div style="height:24px; border:1px solid #EEF0F5; border-radius:8px;"></div>
+            <div style="height:24px; border:1px solid #EEF0F5; border-radius:8px;"></div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:12px; font-size:13.5px; font-weight:700; color:#14151B;">Essencial</div>
+      </div>
+    </div>
+
+    <button style="background:{{accent}}; color:#FFFFFF; border:none; padding:15px 40px; border-radius:12px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; cursor:pointer; box-shadow:0 12px 24px -12px rgba(1,21,173,0.45);">Continuar</button>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>
