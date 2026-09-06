@@ -1,0 +1,11 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 844 },
+    { "file": "Recomendacao.dc.html", "x": 470, "y": 0, "w": 390, "h": 844 }
+  ],
+  "annotations": [
+    { "id": "label-main", "x": 0, "y": -50, "w": 300, "text": "Pergunta em andamento" },
+    { "id": "label-reco", "x": 470, "y": -50, "w": 320, "text": "Recomendação final → destino real" }
+  ],
+  "launch": { "view": "canvas" }
+}

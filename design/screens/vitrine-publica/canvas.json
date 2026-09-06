@@ -1,11 +1,9 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 1140, "expand": "fit" },
-    { "file": "Popup.dc.html", "x": 470, "y": 0, "w": 390, "h": 844, "expand": "fit" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 1140, "expand": "fit" }
   ],
   "annotations": [
-    { "id": "label-main", "x": 0, "y": -50, "w": 300, "text": "Vitrine pública — Marina Silva" },
-    { "id": "label-popup", "x": 470, "y": -50, "w": 320, "text": "Pop-up de captura de contato" }
+    { "id": "label-main", "x": 0, "y": -50, "w": 300, "text": "Vitrine pública — Marina Silva" }
   ],
   "launch": { "view": "canvas" }
 }
