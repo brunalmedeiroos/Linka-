@@ -1,0 +1,602 @@
+<title>Protótipo Linkaê</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Baloo+2:wght@700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+  :root{
+    --blue:#0115AD; --blue-dark:#0A0F7A;
+    --bg:#FFFFFF; --bg-2:#F7F8FA; --bg-3:#F0F1F4; --bg-4:#EEF0F5;
+    --border:#E5E8EE; --border-2:#E3E5EB;
+    --text:#14151B; --text-2:#3D414C; --text-3:#4B4F5A; --text-4:#6B7080; --text-5:#8A8F9C; --text-6:#9297A3; --text-7:#B4B8C2;
+    --green:#1E9E6B; --green-bg:#E4F5EC;
+    --red:#C1524A;
+    --amber:#D9A441; --amber-text:#B8862B;
+    --tint:#F5F7FF; --tint-border:#DCE1F5;
+    --maroon:#33121C; --maroon-2:#3E1826; --gold:#D9A15E; --gold-2:#E8C77A; --rose:#C9536B;
+    --cream:#F5EDE4; --cream-2:#F3ECE3; --mut-rose:#C9AFAF; --mut-rose-2:#8A7A78;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg-2); font-family:'Montserrat',system-ui,sans-serif; color:var(--text);}
+  button{font-family:inherit; cursor:pointer;}
+  input,textarea{font-family:inherit;}
+  ::placeholder{color:var(--text-7);}
+
+  .screen{position:fixed; inset:0; overflow-y:auto; background:var(--bg);}
+  [hidden]{display:none !important;}
+
+  .btn{border:none; border-radius:12px; font-weight:700; font-size:13.5px; padding:13px 26px;}
+  .btn-primary{background:var(--blue); color:#fff; box-shadow:0 12px 24px -12px rgba(1,21,173,.45);}
+  .btn-secondary{background:transparent; border:1.5px solid var(--border); color:var(--text);}
+  .btn-ghost{background:var(--bg-3); color:var(--text);}
+  .btn-block{width:100%;}
+  .btn[disabled]{background:#C7CCD6; box-shadow:none; cursor:default;}
+
+  .input{width:100%; padding:13px 14px; border-radius:11px; border:1px solid var(--border-2); font-size:13.5px; color:var(--text);}
+  .label{font-size:11.5px; font-weight:700; color:var(--text-3); margin-bottom:6px;}
+
+  .logo{display:flex; align-items:center; gap:4px;}
+  .logo span{font-family:'Baloo 2',sans-serif; font-weight:800; color:var(--blue); font-size:21px;}
+  .logo svg{width:17px; height:17px;}
+
+  .header{display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:76px; border-bottom:1px solid var(--bg-4); background:var(--bg);}
+  .header-left{display:flex; align-items:center; gap:14px;}
+  .back-btn{width:36px; height:36px; border-radius:10px; background:var(--bg-3); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;}
+  .title-block .t1{font-weight:700; font-size:16px; color:var(--text);}
+  .title-block .t2{font-size:11.5px; color:var(--text-6);}
+
+  .card{background:var(--bg); border:1px solid var(--border); border-radius:16px;}
+  .chip{padding:6px 13px; border-radius:999px; font-size:11.5px; font-weight:700;}
+
+  /* prototype nav helper */
+  #proto-nav{position:fixed; right:18px; bottom:18px; z-index:999; font-family:'Montserrat',sans-serif;}
+  #proto-nav-toggle{background:rgba(20,21,27,.82); color:#fff; border:none; border-radius:999px; padding:11px 18px; font-size:12.5px; font-weight:700; box-shadow:0 10px 24px -8px rgba(0,0,0,.4); display:flex; align-items:center; gap:8px;}
+  #proto-nav-list{display:none; position:absolute; right:0; bottom:52px; width:240px; background:#fff; border:1px solid var(--border); border-radius:14px; box-shadow:0 24px 48px -16px rgba(0,0,0,.3); padding:8px; max-height:70vh; overflow-y:auto;}
+  #proto-nav-list.open{display:block;}
+  #proto-nav-list .grp{font-size:10px; font-weight:800; letter-spacing:.06em; color:var(--text-6); padding:8px 10px 4px;}
+  #proto-nav-list button{display:block; width:100%; text-align:left; background:none; border:none; padding:8px 10px; border-radius:8px; font-size:12.5px; font-weight:600; color:var(--text-2);}
+  #proto-nav-list button:hover{background:var(--bg-3);}
+
+  #toast{position:fixed; left:50%; bottom:34px; transform:translate(-50%,20px); background:var(--text); color:#fff; font-size:12.5px; font-weight:600; padding:12px 20px; border-radius:11px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:1000;}
+  #toast.show{opacity:1; transform:translate(-50%,0);}
+</style>
+
+<!-- ============ LANDING ============ -->
+<section id="s-landing" class="screen">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 120px; height:84px; border-bottom:1px solid var(--bg-4);">
+    <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+    <div style="display:flex; gap:40px;"><span style="font-size:14px; font-weight:600; color:var(--text-2);">Como funciona</span><span style="font-size:14px; font-weight:600; color:var(--text-2);">Planos</span><span style="font-size:14px; font-weight:600; color:var(--text-2);">FAQ</span></div>
+    <button class="btn btn-primary" onclick="goTo('cadastro')">Começar agora</button>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:64px; padding:96px 120px; min-height:600px;">
+    <div style="flex:1;">
+      <div style="font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:18px;">PARA CREATORS</div>
+      <div style="font-size:56px; font-weight:800; color:#0B0C10; line-height:1.08; letter-spacing:-.02em;">Muito além de<br/>um link na bio.</div>
+      <div style="font-size:17px; color:var(--text-3); line-height:1.6; margin-top:24px; max-width:460px;">O Linkaê transforma o link da sua bio em uma vitrine digital: organizada, estratégica e com a sua cara — não mais uma lista de botões genérica.</div>
+      <div style="display:flex; align-items:center; gap:18px; margin-top:34px;">
+        <button class="btn btn-primary" style="padding:16px 30px; font-size:14.5px;" onclick="goTo('cadastro')">Criar minha vitrine</button>
+        <span style="font-size:12.5px; color:var(--text-6); font-weight:600;">7 dias de garantia. Cancele quando quiser.</span>
+      </div>
+    </div>
+    <div style="flex-shrink:0; position:relative; width:340px; height:520px;">
+      <div style="position:absolute; left:-10px; bottom:20px; width:190px; height:340px; border-radius:28px; background:var(--maroon); border:1px solid var(--border); box-shadow:0 30px 60px -24px rgba(20,21,27,.3); padding:16px 14px; display:flex; flex-direction:column; align-items:center; gap:7px; transform:rotate(-6deg);">
+        <div style="width:40px; height:40px; border-radius:50%; padding:3px; background:linear-gradient(135deg,var(--gold-2),var(--rose)); margin-top:4px;"><div style="width:100%; height:100%; border-radius:50%; background:#4A2530;"></div></div>
+        <div style="font-size:9.5px; font-weight:700; color:var(--cream); font-family:'Playfair Display',serif;">Marina</div>
+        <div style="width:100%; height:20px; border-radius:7px; background:rgba(255,255,255,.08); margin-top:4px;"></div>
+        <div style="width:100%; height:20px; border-radius:7px; background:rgba(255,255,255,.08);"></div>
+      </div>
+      <div style="position:absolute; right:0; top:0; width:250px; height:480px; border-radius:32px; background:var(--bg-3); border:1px solid var(--border); box-shadow:0 40px 70px -30px rgba(1,21,173,.28); padding:20px 18px; display:flex; flex-direction:column; align-items:center; gap:9px;">
+        <div style="width:52px; height:52px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; margin-top:4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div style="font-weight:700; font-size:12.5px;">Marina Silva</div>
+        <div style="font-size:10px; color:var(--text-5); margin-bottom:6px;">Criadora de conteúdo · UGC</div>
+        <div style="width:100%; display:flex; flex-direction:column; gap:6px;"><div style="height:28px; background:#fff; border:1px solid var(--border); border-radius:9px;"></div><div style="height:28px; background:#fff; border:1px solid var(--border); border-radius:9px;"></div></div>
+        <div style="width:100%; display:flex; gap:6px; margin-top:4px;"><div style="flex:1; height:52px; border-radius:9px; background:#fff; border:1px solid var(--border);"></div><div style="flex:1; height:52px; border-radius:9px; background:#fff; border:1px solid var(--border);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-2); padding:64px 120px; text-align:center;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:22px;">PARA QUEM É O LINKAÊ</div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:900px; margin:0 auto;">
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Criadores de conteúdo</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Influenciadores</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">UGC creators</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Blogueiras</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Streamers</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Creators que vendem produtos</div>
+      <div class="chip" style="background:#fff; border:1px solid var(--border); color:var(--text);">Creators com mentorias e cursos</div>
+    </div>
+  </div>
+
+  <div style="padding:96px 120px;">
+    <div style="text-align:center; margin-bottom:56px;"><div style="font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:14px;">COMO FUNCIONA</div><div style="font-size:34px; font-weight:800;">Do jeito que fizer sentido pra você</div></div>
+    <div style="display:flex; gap:32px;">
+      <div style="flex:1;"><div style="width:38px; height:38px; border-radius:10px; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; color:var(--blue); margin-bottom:18px;">1</div><div style="font-size:17px; font-weight:700; margin-bottom:8px;">Monte sua vitrine</div><div style="font-size:13.5px; color:var(--text-4); line-height:1.6;">Escolha um template pronto ou construa do zero. Adicione só o que faz sentido pra você.</div></div>
+      <div style="flex:1;"><div style="width:38px; height:38px; border-radius:10px; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; color:var(--blue); margin-bottom:18px;">2</div><div style="font-size:17px; font-weight:700; margin-bottom:8px;">Cada visitante acha seu caminho</div><div style="font-size:13.5px; color:var(--text-4); line-height:1.6;">Links, produtos, redes — e no Plano 2, um Concierge que aponta o destino certo.</div></div>
+      <div style="flex:1;"><div style="width:38px; height:38px; border-radius:10px; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; color:var(--blue); margin-bottom:18px;">3</div><div style="font-size:17px; font-weight:700; margin-bottom:8px;">Publique e compartilhe</div><div style="font-size:13.5px; color:var(--text-4); line-height:1.6;">Um link só, na sua bio, sempre atualizado.</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--blue); padding:80px 120px; text-align:center;"><div style="font-size:38px; font-weight:800; color:#fff; max-width:700px; margin:0 auto; line-height:1.3;">"Liberdade de fazer do meu jeito."</div></div>
+
+  <div style="padding:100px 120px; background:var(--bg-2);">
+    <div style="text-align:center; margin-bottom:56px;"><div style="font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:14px;">PLANOS</div><div style="font-size:34px; font-weight:800;">Sem plano gratuito. Com 7 dias de garantia.</div></div>
+    <div style="display:flex; gap:24px; max-width:920px; margin:0 auto;">
+      <div class="card" style="flex:1; padding:36px;">
+        <div style="font-size:18px; font-weight:800;">Plano 1</div>
+        <div style="font-size:13px; color:var(--text-5); margin:6px 0 20px;">Vitrine profissional, sem montar do zero.</div>
+        <div style="display:flex; align-items:baseline; gap:6px;"><span style="font-size:32px; font-weight:800;">R$29,90</span><span style="font-size:13px; color:var(--text-6);">/mês</span></div>
+        <div style="font-size:12px; color:var(--text-6); margin-bottom:24px;">ou R$299/ano</div>
+        <button class="btn btn-ghost btn-block" onclick="goTo('cadastro')">Escolher Plano 1</button>
+      </div>
+      <div class="card" style="flex:1; padding:36px; border:2px solid var(--blue); box-shadow:0 24px 48px -20px rgba(1,21,173,.22);">
+        <div style="font-size:18px; font-weight:800;">Plano 2</div>
+        <div style="font-size:13px; color:var(--text-5); margin:6px 0 20px;">Tudo do Plano 1, com Concierge IA e liberdade total.</div>
+        <div style="display:flex; align-items:baseline; gap:6px;"><span style="font-size:32px; font-weight:800;">R$59,90</span><span style="font-size:13px; color:var(--text-6);">/mês</span></div>
+        <div style="font-size:12px; color:var(--text-6); margin-bottom:24px;">ou R$599/ano</div>
+        <button class="btn btn-primary btn-block" onclick="goTo('cadastro')">Escolher Plano 2</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:100px 120px; text-align:center;">
+    <div style="font-size:38px; font-weight:800; max-width:640px; margin:0 auto; line-height:1.25;">Sua bio merece mais que uma lista de links.</div>
+    <button class="btn btn-primary" style="margin-top:30px; padding:17px 34px; font-size:15px;" onclick="goTo('cadastro')">Criar minha vitrine</button>
+  </div>
+
+  <div style="border-top:1px solid var(--bg-4); padding:40px 120px; display:flex; align-items:center; justify-content:space-between;">
+    <div class="logo"><span style="font-size:17px;">link</span><svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span style="font-size:17px;">aê</span></div>
+    <div style="font-size:11.5px; color:var(--text-7);">© 2026 Linkaê</div>
+  </div>
+</section>
+
+<!-- ============ CADASTRO ============ -->
+<section id="s-cadastro" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px;">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="font-size:13px; color:var(--text-4); font-weight:500;">Já tem conta? <span style="color:var(--blue); font-weight:700;">Entrar</span></div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 0;">
+      <div class="card" style="width:440px; padding:38px 40px; box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:20px;"><div class="chip" style="background:var(--tint); border:1px solid var(--tint-border); color:var(--blue);">Plano 2 selecionado</div></div>
+        <div style="font-size:23px; font-weight:800; margin-bottom:6px;">Crie sua conta</div>
+        <div style="font-size:13px; color:var(--text-5); margin-bottom:26px;">Falta pouco pra sua vitrine estar no ar.</div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><div class="label">NOME</div><input class="input" placeholder="Seu nome completo" /></div>
+          <div><div class="label">E-MAIL</div><input class="input" placeholder="voce@email.com" /></div>
+          <div><div class="label">SENHA</div><input class="input" placeholder="Mínimo de 8 caracteres" /></div>
+          <div>
+            <div class="label">ESCOLHA SEU @</div>
+            <div style="display:flex; align-items:center; border:1.5px solid var(--green); border-radius:11px; padding:0 14px;">
+              <span style="font-size:13.5px; color:var(--text-6); font-weight:600;">linkae.com/@</span>
+              <input value="marinasilva" style="flex:1; border:none; outline:none; padding:13px 0; font-size:13.5px; font-weight:600;" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="font-size:11.5px; color:var(--green); font-weight:600; margin-top:6px;">Disponível — essa será a sua URL</div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top:24px; padding:15px;" onclick="goTo('pagamento')">Continuar para pagamento</button>
+        <div style="text-align:center; font-size:11.5px; color:var(--text-6); margin-top:14px;">7 dias de garantia. Sem compromisso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGAMENTO ============ -->
+<section id="s-pagamento" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px;">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px; font-weight:700; color:var(--blue);">Cadastro</span></div>
+        <div style="width:24px; height:1.5px; background:var(--blue);"></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#fff;">2</div><span style="font-size:12px; font-weight:700; color:var(--blue);">Pagamento</span></div>
+        <div style="width:24px; height:1.5px; background:#DDE1E7;"></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--bg-4); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:var(--text-7);">3</div><span style="font-size:12px; font-weight:700; color:var(--text-7);">Bem-vindo</span></div>
+      </div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 0;">
+      <div class="card" style="width:460px; padding:34px 38px; box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
+        <div style="font-size:23px; font-weight:800; margin-bottom:6px;">Finalize sua assinatura</div>
+        <div style="font-size:13px; color:var(--text-5); margin-bottom:22px;">Plano 2 · Concierge IA, Analytics e liberdade total.</div>
+        <div style="display:flex; background:var(--bg-3); border-radius:12px; padding:4px; margin-bottom:22px;">
+          <div style="flex:1; text-align:center; padding:10px; border-radius:9px; font-size:12.5px; font-weight:700; color:var(--text-4);">Mensal · R$59,90</div>
+          <div style="flex:1; text-align:center; padding:10px; border-radius:9px; background:#fff; box-shadow:0 4px 10px -4px rgba(20,21,27,.15); font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px;">Anual · R$599 <span style="background:var(--green-bg); color:var(--green); font-size:9.5px; font-weight:800; padding:2px 6px; border-radius:999px;">-17%</span></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><div class="label">NÚMERO DO CARTÃO</div><input class="input" placeholder="0000 0000 0000 0000" /></div>
+          <div><div class="label">NOME NO CARTÃO</div><input class="input" placeholder="Como está impresso no cartão" /></div>
+          <div style="display:flex; gap:12px;"><div style="flex:1;"><div class="label">VALIDADE</div><input class="input" placeholder="MM/AA" /></div><div style="flex:1;"><div class="label">CVV</div><input class="input" placeholder="123" /></div></div>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:1px solid var(--bg-4);"><span style="font-size:13px; font-weight:600; color:var(--text-4);">Total hoje</span><span style="font-size:19px; font-weight:800;">R$599,00</span></div>
+        <button class="btn btn-primary btn-block" style="margin-top:18px; padding:15px;" onclick="goTo('bemvindo')">Confirmar assinatura</button>
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:16px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="var(--text-6)" stroke-width="1.6" stroke-linejoin="round"/></svg><span style="font-size:11.5px; color:var(--text-6); font-weight:600;">7 dias de garantia. Reembolso conforme nossas regras.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEM-VINDO ============ -->
+<section id="s-bemvindo" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column; align-items:center; position:relative; overflow:hidden;">
+    <svg style="position:absolute; left:-60px; top:60px; opacity:.06;" width="180" height="180" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="1.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="1.4"/></svg>
+    <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px; z-index:1;">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px; font-weight:700; color:var(--blue);">Cadastro</span></div>
+        <div style="width:24px; height:1.5px; background:var(--blue);"></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span style="font-size:12px; font-weight:700; color:var(--blue);">Pagamento</span></div>
+        <div style="width:24px; height:1.5px; background:var(--blue);"></div>
+        <div style="display:flex; align-items:center; gap:6px;"><div style="width:20px; height:20px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#fff;">3</div><span style="font-size:12px; font-weight:700; color:var(--blue);">Bem-vindo</span></div>
+      </div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px; z-index:1; text-align:center; min-height:600px;">
+      <div style="width:88px; height:88px; border-radius:50%; background:var(--tint); border:1px solid var(--tint-border); display:flex; align-items:center; justify-content:center;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.4" stroke="var(--blue)" stroke-width="2.2"/><circle cx="15" cy="15" r="5.4" stroke="var(--blue)" stroke-width="2.2"/></svg></div>
+      <div><div style="font-size:36px; font-weight:800;">Bem-vindo ao Linkaê, Marina!</div><div style="font-size:15px; color:var(--text-4); margin-top:14px; max-width:420px;">Sua conta foi criada com sucesso. Agora vamos deixar sua vitrine com a sua cara.</div></div>
+      <button class="btn btn-primary" style="padding:16px 34px; font-size:14.5px;" onclick="goTo('onboarding')">Começar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING ============ -->
+<section id="s-onboarding" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px;">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--bg-4);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--bg-4);"></div><span style="font-size:11.5px; color:var(--text-6); font-weight:600; margin-left:6px;">Passo 1 de 3</span></div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; width:100%; padding:20px 0 60px; min-height:600px;">
+      <div style="text-align:center;"><div style="font-size:28px; font-weight:800;">Vamos montar sua vitrine</div><div style="font-size:14px; color:var(--text-5); margin-top:8px;">Como você quer começar? Depois você pode mudar tudo.</div></div>
+      <div style="display:flex; gap:22px;">
+        <div style="position:relative; width:270px;">
+          <div style="width:270px; height:230px; border-radius:20px; border:2.5px solid var(--blue); box-shadow:0 16px 32px -16px rgba(1,21,173,.35); padding:26px; display:flex; flex-direction:column; gap:14px; background:var(--tint);">
+            <div style="width:44px; height:44px; border-radius:12px; background:#E4E9FA; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div style="font-size:15.5px; font-weight:700;">Estrutura sugerida</div>
+            <div style="font-size:12.5px; color:var(--text-4); line-height:1.55;">Começamos com um ponto de partida simples — perfil, redes e produtos.</div>
+          </div>
+          <div style="position:absolute; top:14px; right:14px; width:22px; height:22px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div style="width:270px;">
+          <div style="width:270px; height:230px; border-radius:20px; border:1px solid var(--border); padding:26px; display:flex; flex-direction:column; gap:14px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:var(--bg-3); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div style="font-size:15.5px; font-weight:700;">Começar em branco</div>
+            <div style="font-size:12.5px; color:var(--text-5); line-height:1.55;">Você monta tudo do zero, do seu jeito.</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="padding:15px 40px;" onclick="goTo('meulinkae')">Continuar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEU LINKAÊ ============ -->
+<section id="s-meulinkae" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column; padding:48px 64px; position:relative; overflow:hidden;">
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="goTo('configuracoes')"><div style="width:40px; height:40px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; color:var(--blue);">M</div></div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:36px; min-height:600px;">
+      <div style="text-align:center;">
+        <div style="font-size:38px; font-weight:700; margin-bottom:14px;">Oii, Marina!</div>
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:17px; font-weight:500; color:var(--text-3);"><span style="width:8px; height:8px; border-radius:50%; border:1.6px solid var(--text-6); display:inline-block;"></span>Sua vitrine ainda não está publicada</div>
+        <div style="font-size:14px; color:var(--text-6); margin-top:6px;">Vamos criar? Leva só alguns minutos.</div>
+      </div>
+      <div style="width:250px; height:440px; border-radius:30px; background:var(--bg-3); border:1px dashed #C7CCD6; padding:20px 18px; display:flex; flex-direction:column; align-items:center; gap:10px; position:relative; cursor:pointer;" onclick="goTo('editor')">
+        <div style="width:56px; height:56px; border-radius:50%; border:1.6px dashed #C7CCD6; display:flex; align-items:center; justify-content:center; margin-top:6px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#B7BCC7" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div style="width:96px; height:11px; border-radius:6px; background:#E9EBF0;"></div>
+        <div style="width:70px; height:8px; border-radius:6px; background:#E9EBF0; margin-bottom:8px;"></div>
+        <div style="width:100%; display:flex; flex-direction:column; gap:7px;"><div style="height:32px; border-radius:10px; border:1px dashed #D6DAE2;"></div><div style="height:32px; border-radius:10px; border:1px dashed #D6DAE2;"></div></div>
+      </div>
+      <button class="btn btn-primary" style="padding:14px 30px; font-size:14.5px;" onclick="goTo('editor')">Editar vitrine</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDITOR ============ -->
+<section id="s-editor" class="screen" hidden>
+  <div style="min-height:100%; background:#fff; display:flex; flex-direction:column;">
+    <div class="header">
+      <div class="header-left"><div class="back-btn" onclick="goTo('meulinkae')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="var(--text-3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="title-block"><div class="t1">Editor da vitrine</div><div class="t2">Vitrine de Marina</div></div></div>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <span style="font-size:12px; font-weight:700; color:var(--blue); cursor:pointer;" onclick="goTo('conciergeconfig')">Configurar Concierge IA →</span>
+        <div style="width:1px; height:20px; background:var(--border);"></div>
+        <div id="editor-status" style="display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--amber-text); font-weight:600;"><span style="width:6px; height:6px; border-radius:50%; background:var(--amber); display:inline-block;"></span>Alterações não salvas</div>
+        <button class="btn btn-secondary" style="padding:10px 18px; font-size:13px;" onclick="showToast('Link copiado!')">Copiar meu link</button>
+        <button class="btn btn-primary" style="padding:10px 22px; font-size:13px;" onclick="saveEditor()">Salvar</button>
+      </div>
+    </div>
+    <div style="flex:1; display:flex;">
+      <div style="width:56%; padding:28px 36px; overflow:hidden;">
+        <button class="btn btn-primary" style="display:flex; align-items:center; gap:8px; padding:12px 20px; font-size:13.5px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>Adicionar</button>
+        <div style="display:flex; gap:8px; margin-top:22px; flex-wrap:wrap;">
+          <div class="chip" style="background:var(--blue); color:#fff;">Tudo</div><div class="chip" style="background:var(--bg-3); color:var(--text-3);">Em destaque</div><div class="chip" style="background:var(--bg-3); color:var(--text-3);">Produtos</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+          <div style="display:flex; align-items:center; gap:12px; background:var(--tint); border:1px solid var(--tint-border); border-radius:14px; padding:12px 14px;"><div style="width:38px; height:38px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div><div style="flex:1;"><div style="font-weight:600; font-size:13.5px;">Perfil</div><div style="font-size:11.5px; color:#7D87B8;">Sempre visível</div></div></div>
+          <div style="display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:14px; padding:12px 14px;"><div style="width:38px; height:38px; border-radius:10px; background:var(--bg-4); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="var(--text-3)" stroke-width="1.8"/><circle cx="15" cy="15" r="4.4" stroke="var(--text-3)" stroke-width="1.8"/></svg></div><div style="flex:1;"><div style="font-weight:600; font-size:13.5px;">Redes sociais</div><div style="font-size:11.5px; color:var(--text-6);">3 redes conectadas</div></div></div>
+          <div style="display:flex; align-items:center; gap:12px; background:var(--tint); border:2px solid var(--blue); border-radius:14px; padding:12px 14px; box-shadow:0 10px 24px -14px rgba(1,21,173,.35); cursor:pointer;" onclick="goTo('vitrinepublica')"><div style="width:38px; height:38px; border-radius:10px; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 8v8l8 4 8-4V8" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:700; font-size:13.5px;">Produtos</div><div style="font-size:11.5px; color:var(--blue); font-weight:600;">3 produtos · editando</div></div></div>
+          <div style="display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:14px; padding:12px 14px;"><div style="width:38px; height:38px; border-radius:10px; background:var(--bg-4); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z" stroke="var(--text-3)" stroke-width="1.8"/></svg></div><div style="flex:1;"><div style="font-weight:600; font-size:13.5px;">Meu Portfólio</div><div style="font-size:11.5px; color:var(--text-6);">Link externo</div></div></div>
+          <div style="display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:14px; padding:12px 14px;"><div style="width:38px; height:38px; border-radius:10px; background:var(--bg-4); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19l1.3-3.6A7 7 0 1112 19a7 7 0 01-3.6-1L5 19z" stroke="var(--text-3)" stroke-width="1.8" stroke-linejoin="round"/></svg></div><div style="flex:1;"><div style="font-weight:600; font-size:13.5px;">WhatsApp</div><div style="font-size:11.5px; color:var(--text-6);">Contato direto</div></div></div>
+        </div>
+      </div>
+      <div style="width:44%; background:var(--bg-3); display:flex; align-items:center; justify-content:center; border-left:1px solid var(--bg-4); cursor:pointer;" onclick="goTo('vitrinepublica')">
+        <div style="width:270px; height:500px; border-radius:32px; background:#FBFBFD; border:1px solid var(--border); box-shadow:0 30px 60px -24px rgba(20,21,27,.28); padding:22px 18px; display:flex; flex-direction:column; align-items:center; gap:9px;">
+          <div style="width:54px; height:54px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; margin-top:4px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div style="font-weight:700; font-size:13px;">Marina Silva</div>
+          <div style="font-size:10.5px; color:var(--text-5); margin-bottom:4px;">Criadora de conteúdo · UGC</div>
+          <div style="width:100%; display:flex; flex-direction:column; gap:6px;"><div style="height:30px; background:#fff; border:1px solid var(--border); border-radius:9px;"></div><div style="height:30px; background:#fff; border:1px solid var(--border); border-radius:9px;"></div></div>
+          <div style="width:100%; margin-top:6px; border:2px solid var(--blue); border-radius:12px; padding:6px;"><div style="font-size:8.5px; font-weight:700; color:var(--blue); margin-bottom:5px; padding-left:2px;">PRODUTOS</div><div style="display:flex; gap:6px; height:52px;"><div style="width:58px; height:52px; border-radius:8px; background:#fff; border:1px solid var(--border);"></div><div style="width:58px; height:52px; border-radius:8px; background:#fff; border:1px solid var(--border);"></div><div style="width:58px; height:52px; border-radius:8px; background:#fff; border:1px solid var(--border);"></div></div></div>
+          <div style="font-size:9.5px; color:var(--text-6); margin-top:8px;">Toque para abrir a vitrine ao vivo →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCIERGE CONFIG ============ -->
+<section id="s-conciergeconfig" class="screen" hidden>
+  <div style="min-height:100%; background:#fff; display:flex; flex-direction:column;">
+    <div class="header">
+      <div class="header-left"><div class="back-btn" onclick="goTo('editor')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="var(--text-3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="title-block"><div class="t1">Concierge IA</div><div class="t2">Vitrine de Marina</div></div></div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="display:flex; align-items:center; gap:9px; cursor:pointer;" onclick="toggleConcierge()">
+          <span id="cc-toggle-label" style="font-size:12.5px; font-weight:600;">Ativado</span>
+          <div id="cc-toggle" style="width:38px; height:22px; border-radius:999px; background:var(--blue); position:relative; padding:2px; transition:background .15s;"><div id="cc-toggle-dot" style="width:18px; height:18px; border-radius:50%; background:#fff; margin-left:auto; transition:margin .15s;"></div></div>
+        </div>
+        <button class="btn btn-primary" style="padding:10px 22px; font-size:13px;" onclick="showToast('Perguntas salvas.')">Salvar</button>
+      </div>
+    </div>
+    <div id="cc-content-on" style="flex:1; display:flex;">
+      <div style="width:56%; padding:28px 36px;">
+        <button class="btn btn-primary" style="display:flex; align-items:center; gap:8px; padding:12px 20px; font-size:13.5px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>Adicionar pergunta</button>
+        <div style="display:flex; flex-direction:column; gap:14px; margin-top:22px;">
+          <div class="card" style="padding:16px;"><div style="display:flex; align-items:center; gap:12px;"><div style="width:24px; height:24px; border-radius:50%; background:var(--bg-3); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--text-3);">1</div><div style="flex:1; font-weight:600; font-size:13.5px;">O que você procura?</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; padding-left:36px;"><div class="chip" style="background:var(--bg-3); color:var(--text-3);">Quero contratar</div><div class="chip" style="background:var(--bg-3); color:var(--text-3);">Quero comprar</div><div class="chip" style="background:var(--bg-3); color:var(--text-3);">Conhecer o trabalho</div><div class="chip" style="border:1px dashed #C7CCD6; color:var(--text-6);">Outro</div></div>
+          </div>
+          <div style="background:var(--tint); border:2px solid var(--blue); border-radius:16px; padding:18px; box-shadow:0 10px 24px -14px rgba(1,21,173,.3);">
+            <div style="display:flex; align-items:center; gap:12px;"><div style="width:24px; height:24px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff;">2</div><div style="flex:1; font-weight:700; font-size:13.5px;">editando…</div></div>
+            <div style="margin-top:12px; padding-left:36px;">
+              <div style="background:#fff; border:1px solid var(--tint-border); border-radius:11px; padding:11px 14px; font-size:13px; font-weight:600;">Você procura algo para começar ou já trabalha com isso?</div>
+              <div style="display:flex; flex-direction:column; gap:7px; margin-top:12px;"><div style="background:#fff; border:1px solid var(--tint-border); border-radius:9px; padding:8px 10px; font-size:12px;">Estou começando</div><div style="background:#fff; border:1px solid var(--tint-border); border-radius:9px; padding:8px 10px; font-size:12px;">Já trabalho com isso</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="width:44%; background:var(--bg-3); display:flex; align-items:center; justify-content:center; border-left:1px solid var(--bg-4);">
+        <div style="width:250px; height:420px; border-radius:30px; background:var(--maroon); border:1px solid var(--border); display:flex; flex-direction:column; padding:18px;">
+          <div style="display:flex; align-items:center; gap:9px;"><div style="width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,var(--gold-2),var(--rose));"></div><div style="font-size:11.5px; font-weight:700; color:var(--cream);">Assistente da Marina</div></div>
+          <div style="margin-top:16px; background:var(--maroon-2); border-radius:12px; border-bottom-left-radius:3px; padding:10px 12px; font-size:11px; color:var(--cream); max-width:190px;">Você procura algo para começar ou já trabalha com isso?</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;"><div class="chip" style="border:1.2px solid rgba(232,199,122,.5); color:var(--cream);">Estou começando</div><div class="chip" style="border:1.2px solid rgba(232,199,122,.5); color:var(--cream);">Já trabalho com isso</div></div>
+        </div>
+      </div>
+    </div>
+    <div id="cc-content-off" hidden style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; max-width:420px; margin:0 auto; text-align:center;">
+      <div style="width:76px; height:76px; border-radius:50%; background:var(--bg-3); display:flex; align-items:center; justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.6L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.4L12 3z" stroke="var(--text-7)" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      <div><div style="font-size:19px; font-weight:700; margin-bottom:8px;">O Concierge está desativado</div><div style="font-size:13.5px; color:var(--text-5); line-height:1.6;">Ative para configurar as perguntas e deixar a IA recomendar seus produtos aos visitantes.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANALYTICS ============ -->
+<section id="s-analytics" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column;">
+    <div class="header">
+      <div class="header-left"><div class="back-btn" onclick="goTo('meulinkae')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="var(--text-3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="title-block"><div class="t1">Analytics</div><div class="t2">Vitrine de Marina</div></div></div>
+      <div style="display:flex; align-items:center; gap:7px; background:var(--bg-3); border-radius:11px; padding:9px 14px;"><span style="font-size:12.5px; font-weight:600;">Últimos 30 dias</span></div>
+    </div>
+    <div style="flex:1; padding:28px 40px; display:flex; flex-direction:column; gap:22px;">
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <div class="card" style="padding:18px;"><div style="font-size:11px; font-weight:700; color:var(--text-6);">VISUALIZAÇÕES</div><div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;"><span style="font-size:25px; font-weight:800;">3.842</span><span style="font-size:11.5px; font-weight:700; color:var(--green);">↑18%</span></div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:11px; font-weight:700; color:var(--text-6);">CLIQUES</div><div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;"><span style="font-size:25px; font-weight:800;">1.290</span><span style="font-size:11.5px; font-weight:700; color:var(--green);">↑9%</span></div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:11px; font-weight:700; color:var(--text-6);">CONVERSAS NO CONCIERGE</div><div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;"><span style="font-size:25px; font-weight:800;">214</span><span style="font-size:11.5px; font-weight:700; color:var(--green);">↑32%</span></div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:11px; font-weight:700; color:var(--text-6);">TAXA DE CONVERSÃO</div><div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;"><span style="font-size:25px; font-weight:800;">5,6%</span><span style="font-size:11.5px; font-weight:700; color:var(--red);">↓2%</span></div></div>
+      </div>
+      <div style="display:flex; gap:16px;">
+        <div style="flex:1; display:flex; align-items:center; gap:12px; background:var(--tint); border:1px solid var(--tint-border); border-radius:14px; padding:15px 16px;"><div style="width:34px; height:34px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round"/></svg></div><div style="font-size:13px; font-weight:600;">Produtos é o bloco mais clicado esta semana.</div></div>
+        <div style="flex:1; display:flex; align-items:center; gap:12px; background:var(--tint); border:1px solid var(--tint-border); border-radius:14px; padding:15px 16px;"><div style="width:34px; height:34px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.6L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.4L12 3z" stroke="var(--blue)" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div style="font-size:13px; font-weight:600;">O Concierge guiou 96 visitantes até um produto.</div></div>
+      </div>
+      <div style="display:flex; gap:20px; flex:1;">
+        <div class="card" style="width:58%; padding:22px; display:flex; flex-direction:column; gap:20px;">
+          <div><div style="font-size:12px; font-weight:700; color:var(--text-3); margin-bottom:12px;">PRODUTOS MAIS ACESSADOS</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:120px; font-size:12px; font-weight:600;">Creators Club</div><div style="flex:1; height:7px; background:var(--bg-4); border-radius:999px;"><div style="width:100%; height:100%; background:var(--blue); border-radius:999px;"></div></div><div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:var(--text-6);">412</div></div>
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:120px; font-size:12px; font-weight:600;">E-book UGC</div><div style="flex:1; height:7px; background:var(--bg-4); border-radius:999px;"><div style="width:65%; height:100%; background:var(--blue); border-radius:999px;"></div></div><div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:var(--text-6);">268</div></div>
+            </div>
+          </div>
+          <div style="height:1px; background:var(--bg-4);"></div>
+          <div><div style="font-size:12px; font-weight:700; color:var(--text-3); margin-bottom:12px;">LINKS MAIS ACESSADOS</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:120px; font-size:12px; font-weight:600;">Instagram</div><div style="flex:1; height:7px; background:var(--bg-4); border-radius:999px;"><div style="width:100%; height:100%; background:var(--blue); border-radius:999px;"></div></div><div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:var(--text-6);">380</div></div>
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:120px; font-size:12px; font-weight:600;">WhatsApp</div><div style="flex:1; height:7px; background:var(--bg-4); border-radius:999px;"><div style="width:63%; height:100%; background:var(--blue); border-radius:999px;"></div></div><div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:var(--text-6);">240</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="width:42%; padding:22px; display:flex; flex-direction:column; gap:14px;">
+          <div style="font-size:12px; font-weight:700; color:var(--text-3);">INTERAÇÕES COM O CONCIERGE</div>
+          <div><div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-3); font-weight:600; margin-bottom:5px;"><span>Iniciaram</span><span>320</span></div><div style="height:24px; width:100%; background:var(--blue); border-radius:8px;"></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-3); font-weight:600; margin-bottom:5px;"><span>Completaram</span><span>214</span></div><div style="height:24px; width:67%; background:#3D57C4; border-radius:8px;"></div></div>
+          <div><div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-3); font-weight:600; margin-bottom:5px;"><span>Chegaram a um produto</span><span>96</span></div><div style="height:24px; width:30%; background:#8497DB; border-radius:8px;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIGURAÇÕES ============ -->
+<section id="s-configuracoes" class="screen" hidden>
+  <div style="min-height:100%; background:#fff; display:flex; flex-direction:column;">
+    <div class="header"><div class="header-left"><div class="back-btn" onclick="goTo('meulinkae')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="var(--text-3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="title-block"><div class="t1">Configurações</div></div></div></div>
+    <div style="flex:1; display:flex;">
+      <div style="width:270px; border-right:1px solid var(--bg-4); padding:24px 16px; display:flex; flex-direction:column; gap:2px;">
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; background:var(--tint);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg><span style="font-size:13px; font-weight:700; color:var(--blue);">Minha conta</span></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="var(--text-3)" stroke-width="1.7" stroke-linejoin="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Plano</span></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Pagamento</span></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/><circle cx="15" cy="15" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Domínio</span></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Segurança</span></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="var(--text-3)" stroke-width="1.9" stroke-linecap="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Preferências</span></div>
+        <div style="height:1px; background:var(--bg-4); margin:10px 14px;"></div>
+        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;" onclick="goTo('landing')"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M16 17l5-5-5-5M21 12H9" stroke="var(--red)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--red);">Sair</span></div>
+      </div>
+      <div style="flex:1; padding:36px 48px; max-width:520px;">
+        <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Minha conta</div>
+        <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Informações básicas da sua conta no Linkaê.</div>
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px;"><div style="width:64px; height:64px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div style="font-size:13.5px; font-weight:700;">Marina Silva</div><div style="font-size:12px; color:var(--blue); font-weight:600; margin-top:4px;">Alterar foto</div></div></div>
+        <div style="display:flex; flex-direction:column; gap:16px;"><div><div class="label">NOME</div><input class="input" value="Marina Silva" /></div><div><div class="label">E-MAIL</div><input class="input" value="marina@email.com" /></div></div>
+        <button class="btn btn-primary" style="margin-top:26px; padding:13px 26px; font-size:13.5px;" onclick="showToast('Alterações salvas.')">Salvar alterações</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VITRINE PÚBLICA ============ -->
+<section id="s-vitrinepublica" class="screen" hidden>
+  <div style="min-height:100%; background:var(--maroon); display:flex; justify-content:center; padding:40px 0 60px;">
+    <div style="width:390px; max-width:100%; padding:0 22px; display:flex; flex-direction:column; align-items:center;">
+      <div style="width:112px; height:112px; border-radius:50%; padding:4px; background:linear-gradient(135deg,var(--gold-2),#D9A15E,var(--rose)); display:flex; align-items:center; justify-content:center;"><div style="width:100%; height:100%; border-radius:50%; background:#4A2530; display:flex; align-items:center; justify-content:center; border:3px solid var(--maroon);"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.6" stroke="var(--gold-2)" stroke-width="1.6"/><path d="M5 20c1.4-3.8 4.2-5.6 7-5.6s5.6 1.8 7 5.6" stroke="var(--gold-2)" stroke-width="1.6" stroke-linecap="round"/></svg></div></div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--gold); margin-top:18px;">CRIADORA DE CONTEÚDO</div>
+      <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--cream); margin-top:8px;">Marina Silva</div>
+      <div style="font-size:13.5px; color:var(--mut-rose); line-height:1.6; text-align:center; margin-top:10px; max-width:280px;">Ajudo marcas a criar conteúdo que <span style="color:var(--gold); font-weight:600;">conecta e vende</span>.</div>
+      <div style="display:flex; gap:12px; margin-top:20px;">
+        <div style="width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4.5" stroke="var(--cream)" stroke-width="1.6"/></svg></div>
+        <div style="width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M8 6l9 6-9 6V6z" stroke="var(--cream)" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div style="width:100%; margin-top:30px; cursor:pointer;" onclick="openConcierge()">
+        <div style="font-size:10.5px; font-weight:700; letter-spacing:.12em; color:var(--gold); margin-bottom:10px;">NÃO SABE POR ONDE COMEÇAR?</div>
+        <div style="width:100%; background:var(--maroon-2); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;"><div style="font-size:15px; font-weight:700; color:var(--cream); line-height:1.35;">Qual caminho combina com você?</div><div style="width:26px; height:26px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="var(--maroon)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          <div style="font-size:12px; color:var(--mut-rose); line-height:1.5; margin-top:6px;">Em menos de 1 minuto, te mostro o que faz mais sentido pra você.</div>
+        </div>
+      </div>
+      <div style="width:100%; margin-top:30px;">
+        <div style="font-size:10.5px; font-weight:700; letter-spacing:.12em; color:var(--gold); margin-bottom:10px;">PRODUTOS</div>
+        <div style="display:flex; gap:12px; overflow-x:auto;">
+          <div style="width:150px; flex-shrink:0; background:var(--cream-2); border-radius:16px; padding:10px;"><div style="width:100%; height:96px; border-radius:11px; background:linear-gradient(135deg,#D9A15E,#8E4A55);"></div><div style="font-size:11.5px; font-weight:700; color:var(--maroon); margin-top:8px;">Creators Club</div><div style="font-size:11px; font-weight:700; color:var(--gold);">R$497</div></div>
+          <div style="width:150px; flex-shrink:0; background:var(--cream-2); border-radius:16px; padding:10px;"><div style="width:100%; height:96px; border-radius:11px; background:linear-gradient(135deg,var(--rose),#4A2530);"></div><div style="font-size:11.5px; font-weight:700; color:var(--maroon); margin-top:8px;">Mentoria 1:1</div><div style="font-size:11px; font-weight:700; color:var(--gold);">R$1.200</div></div>
+        </div>
+      </div>
+      <div style="width:100%; display:flex; flex-direction:column; gap:10px; margin-top:28px;">
+        <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:14px 16px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z" stroke="var(--cream)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--cream); flex:1;">Meu Portfólio</span></div>
+        <div style="display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:14px 16px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19l1.3-3.6A7 7 0 1112 19a7 7 0 01-3.6-1L5 19z" stroke="var(--cream)" stroke-width="1.7" stroke-linejoin="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--cream); flex:1;">Falar no WhatsApp</span></div>
+      </div>
+      <div style="margin-top:34px; font-size:11px; color:var(--mut-rose-2); cursor:pointer;" onclick="goTo('editor')">← Voltar para o editor</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCIERGE CHAT ============ -->
+<section id="s-conciergechat" class="screen" hidden>
+  <div style="min-height:100%; background:var(--maroon); display:flex; justify-content:center; align-items:center; padding:30px 0;">
+    <div style="width:390px; max-width:100%; height:720px; background:var(--maroon); display:flex; flex-direction:column; border-radius:24px; border:1px solid rgba(255,255,255,.1); overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:12px; padding:18px 20px; border-bottom:1px solid rgba(255,255,255,.08);">
+        <div style="width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="goTo('vitrinepublica')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--cream)" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--gold-2),var(--rose));"></div>
+        <div><div style="font-size:13.5px; font-weight:700; color:var(--cream);">Assistente da Marina</div><div style="font-size:10.5px; color:var(--mut-rose);">Assistente virtual</div></div>
+      </div>
+
+      <div id="chat-step-question" style="flex:1; padding:20px; display:flex; flex-direction:column; gap:22px;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:9px;"><div style="width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--gold-2),var(--rose)); flex-shrink:0;"></div><div style="background:var(--maroon-2); border-radius:14px; border-bottom-left-radius:4px; padding:11px 14px; max-width:240px; font-size:12.5px; color:var(--cream);">Olá! O que você procura?</div></div>
+          <div style="display:flex; flex-wrap:wrap; gap:7px; padding-left:35px;"><div class="chip" style="background:var(--gold); color:var(--maroon);">Quero contratar</div><div class="chip" style="border:1px solid rgba(255,255,255,.14); color:#8A7A78;">Quero comprar</div></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:9px;"><div style="width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--gold-2),var(--rose)); flex-shrink:0;"></div><div style="background:var(--maroon-2); border-radius:14px; border-bottom-left-radius:4px; padding:11px 14px; max-width:240px; font-size:12.5px; color:var(--cream);">Você procura algo para começar ou já trabalha com isso?</div></div>
+          <div style="display:flex; flex-wrap:wrap; gap:7px; padding-left:35px;">
+            <div class="chip" style="border:1.4px solid rgba(232,199,122,.5); color:var(--cream); cursor:pointer;" onclick="showRecommendation()">Estou começando</div>
+            <div class="chip" style="border:1.4px solid rgba(232,199,122,.5); color:var(--cream); cursor:pointer;" onclick="showRecommendation()">Já trabalho com isso</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="chat-step-reco" hidden style="flex:1; padding:20px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; flex-direction:column; gap:8px; opacity:.4;">
+          <div style="font-size:11px; color:var(--mut-rose);">O que você procura? → <span style="color:var(--cream); font-weight:600;">Quero contratar</span></div>
+          <div style="font-size:11px; color:var(--mut-rose);">Começando ou já atua? → <span style="color:var(--cream); font-weight:600;">Estou começando</span></div>
+        </div>
+        <div style="display:flex; gap:9px;"><div style="width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--gold-2),var(--rose)); flex-shrink:0;"></div><div style="background:var(--maroon-2); border-radius:14px; border-bottom-left-radius:4px; padding:11px 14px; max-width:260px; font-size:12.5px; color:var(--cream);">Entendi! Acho que isso pode fazer sentido pra você:</div></div>
+        <div style="margin-left:35px; background:var(--cream-2); border-radius:18px; padding:14px; display:flex; flex-direction:column; gap:10px;">
+          <div style="width:100%; height:110px; border-radius:13px; background:linear-gradient(135deg,#D9A15E,#8E4A55);"></div>
+          <div><div style="font-size:14px; font-weight:700; color:var(--maroon);">Creators Club</div><div style="font-size:11.5px; font-weight:700; color:var(--gold);">R$497</div></div>
+          <div style="font-size:11.5px; color:#7A6A55; line-height:1.5;">Porque foi criado pra quem está começando a estruturar conteúdo e primeiras parcerias.</div>
+          <button class="btn" style="width:100%; background:var(--maroon); color:var(--cream); padding:12px; font-size:12.5px;" onclick="showToast('Isso levaria a um destino externo cadastrado pela creator.')">Conhecer produto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- prototype nav helper -->
+<div id="proto-nav">
+  <div id="proto-nav-list">
+    <div class="grp">SITE / AQUISIÇÃO</div>
+    <button onclick="goTo('landing')">Landing Page</button>
+    <button onclick="goTo('cadastro')">Cadastro</button>
+    <button onclick="goTo('pagamento')">Pagamento</button>
+    <button onclick="goTo('bemvindo')">Bem-vindo</button>
+    <button onclick="goTo('onboarding')">Onboarding</button>
+    <div class="grp">PAINEL DO CREATOR</div>
+    <button onclick="goTo('meulinkae')">Meu Linkaê</button>
+    <button onclick="goTo('editor')">Editor da vitrine</button>
+    <button onclick="goTo('conciergeconfig')">Concierge IA (config)</button>
+    <button onclick="goTo('analytics')">Analytics</button>
+    <button onclick="goTo('configuracoes')">Configurações</button>
+    <div class="grp">VITRINE PÚBLICA</div>
+    <button onclick="goTo('vitrinepublica')">Vitrine da Marina</button>
+    <button onclick="openConcierge()">Concierge (chat)</button>
+  </div>
+  <button id="proto-nav-toggle" onclick="document.getElementById('proto-nav-list').classList.toggle('open')">☰ Telas</button>
+</div>
+<div id="toast"></div>
+
+<script>
+  function goTo(id){
+    document.querySelectorAll('.screen').forEach(function(s){ s.hidden = true; });
+    var target = document.getElementById('s-' + id);
+    if(target){ target.hidden = false; target.scrollTop = 0; }
+    document.getElementById('proto-nav-list').classList.remove('open');
+    window.scrollTo(0,0);
+  }
+  function showToast(msg){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  }
+  function saveEditor(){
+    var el = document.getElementById('editor-status');
+    el.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>Alterações salvas';
+    el.style.color = 'var(--green)';
+    showToast('Alterações salvas.');
+  }
+  function toggleConcierge(){
+    var toggle = document.getElementById('cc-toggle');
+    var dot = document.getElementById('cc-toggle-dot');
+    var label = document.getElementById('cc-toggle-label');
+    var on = document.getElementById('cc-content-on');
+    var off = document.getElementById('cc-content-off');
+    var isOn = !off.hidden ? false : true;
+    if(isOn && !on.hidden){
+      toggle.style.background = '#E0E2E8';
+      dot.style.marginLeft = '0';
+      label.textContent = 'Desativado';
+      label.style.color = 'var(--text-6)';
+      on.hidden = true; off.hidden = false;
+    } else {
+      toggle.style.background = 'var(--blue)';
+      dot.style.marginLeft = 'auto';
+      label.textContent = 'Ativado';
+      label.style.color = 'var(--text)';
+      on.hidden = false; off.hidden = true;
+    }
+  }
+  function openConcierge(){
+    document.getElementById('chat-step-question').hidden = false;
+    document.getElementById('chat-step-reco').hidden = true;
+    goTo('conciergechat');
+  }
+  function showRecommendation(){
+    document.getElementById('chat-step-question').hidden = true;
+    document.getElementById('chat-step-reco').hidden = false;
+  }
+</script>
