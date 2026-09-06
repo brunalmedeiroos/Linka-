@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+    a { color: #0115AD; text-decoration: none; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FFFFFF; display:flex; flex-direction:column; position:relative; overflow:hidden;">
+
+  <svg style="position:absolute; right:-30px; bottom:-30px; opacity:0.04; z-index:0;" width="200" height="200" viewBox="0 0 24 24" fill="none">
+    <circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+    <circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="1.6"/>
+  </svg>
+
+  <!-- header -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:76px; min-height:76px; border-bottom:1px solid #EDEEF2; z-index:1;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:36px; height:36px; border-radius:10px; background:#F0F1F4; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#4B4F5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:16px; color:#14151B;">Concierge IA</div>
+        <div style="font-size:11.5px; color:#9297A3;">Vitrine de Marina</div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:20px;">
+      <div style="display:flex; align-items:center; gap:9px;">
+        <span style="font-size:12.5px; font-weight:600; color:#14151B;">Ativado</span>
+        <div style="width:38px; height:22px; border-radius:999px; background:{{accent}}; position:relative; padding:2px;">
+          <div style="width:18px; height:18px; border-radius:50%; background:#fff; margin-left:auto;"></div>
+        </div>
+      </div>
+      <div style="width:1px; height:22px; background:#E5E8EE;"></div>
+      <div style="display:flex; align-items:center; gap:7px; font-size:12.5px; color:#B8862B; font-weight:600;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#D9A441; display:inline-block;"></span>
+        Alterações não salvas
+      </div>
+      <button style="background:{{accent}}; color:#FFFFFF; border:none; padding:10px 22px; border-radius:11px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:13px; cursor:pointer; box-shadow:0 8px 16px -8px rgba(1,21,173,0.45);">Salvar</button>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div style="flex:1; display:flex; z-index:1;">
+
+    <!-- left: questions -->
+    <div style="width:56%; padding:28px 36px; overflow:hidden;">
+
+      <div style="position:relative; display:inline-block;">
+        <button style="display:flex; align-items:center; gap:8px; background:{{accent}}; color:#fff; border:none; padding:12px 20px; border-radius:12px; font-family:'Montserrat',sans-serif; font-weight:600; font-size:13.5px; cursor:pointer; box-shadow:0 8px 16px -8px rgba(1,21,173,0.4);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Adicionar pergunta
+        </button>
+
+        <div style="position:absolute; top:54px; left:0; width:270px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:14px; box-shadow:0 24px 48px -20px rgba(20,21,27,0.28); padding:10px; z-index:6;">
+          <div style="display:flex; align-items:center; gap:10px; padding:10px 10px; border-radius:9px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h9" stroke="#5A5F6C" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <span style="font-size:12.5px; font-weight:600; color:#2B2E36;">Pergunta em branco</span>
+          </div>
+          <div style="height:1px; background:#EEF0F5; margin:6px 4px;"></div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:#9297A3; padding:6px 10px 4px;">SUGESTÕES DO LINKAÊ</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 10px; border-radius:9px;">
+            <span style="font-size:12px; font-weight:600; color:#2B2E36;">Você já conhece meu trabalho?</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:9px 10px; border-radius:9px;">
+            <span style="font-size:12px; font-weight:600; color:#2B2E36;">Qual é o seu objetivo agora?</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:22px;">
+
+        <!-- Q1: collapsed -->
+        <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:16px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.4" fill="#C7CCD6"/><circle cx="5" cy="12" r="1.4" fill="#C7CCD6"/><circle cx="5" cy="18" r="1.4" fill="#C7CCD6"/><circle cx="10" cy="6" r="1.4" fill="#C7CCD6"/><circle cx="10" cy="12" r="1.4" fill="#C7CCD6"/><circle cx="10" cy="18" r="1.4" fill="#C7CCD6"/></svg>
+            <div style="width:24px; height:24px; border-radius:50%; background:#F0F1F4; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#4B4F5A;">1</div>
+            <div style="flex:1; font-weight:600; font-size:13.5px; color:#14151B;">O que você procura?</div>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l1-4L16 5l3 3-11 11-4 1z" stroke="#9297A3" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M10 7V5.5A1.5 1.5 0 0111.5 4h1A1.5 1.5 0 0114 5.5V7M7 7l.7 11a2 2 0 002 1.9h4.6a2 2 0 002-1.9L17 7" stroke="#C7473F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; padding-left:50px;">
+            <div style="padding:5px 11px; border-radius:999px; background:#F0F1F4; color:#4B4F5A; font-size:11px; font-weight:600;">Quero contratar</div>
+            <div style="padding:5px 11px; border-radius:999px; background:#F0F1F4; color:#4B4F5A; font-size:11px; font-weight:600;">Quero comprar</div>
+            <div style="padding:5px 11px; border-radius:999px; background:#F0F1F4; color:#4B4F5A; font-size:11px; font-weight:600;">Conhecer o trabalho</div>
+            <div style="padding:5px 11px; border-radius:999px; background:#F0F1F4; color:#4B4F5A; font-size:11px; font-weight:600;">Sou creator</div>
+            <div style="padding:5px 11px; border-radius:999px; border:1px dashed #C7CCD6; color:#9297A3; font-size:11px; font-weight:600;">Outro</div>
+          </div>
+        </div>
+
+        <!-- Q2: expanded / editing -->
+        <div style="background:#F5F7FF; border:2px solid {{accent}}; border-radius:16px; padding:18px; box-shadow:0 10px 24px -14px rgba(1,21,173,0.3);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.4" fill="#5A5F6C"/><circle cx="5" cy="12" r="1.4" fill="#5A5F6C"/><circle cx="5" cy="18" r="1.4" fill="#5A5F6C"/><circle cx="10" cy="6" r="1.4" fill="#5A5F6C"/><circle cx="10" cy="12" r="1.4" fill="#5A5F6C"/><circle cx="10" cy="18" r="1.4" fill="#5A5F6C"/></svg>
+            <div style="width:24px; height:24px; border-radius:50%; background:{{accent}}; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff;">2</div>
+            <div style="flex:1; font-weight:700; font-size:13.5px; color:#14151B;">editando…</div>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M10 7V5.5A1.5 1.5 0 0111.5 4h1A1.5 1.5 0 0114 5.5V7M7 7l.7 11a2 2 0 002 1.9h4.6a2 2 0 002-1.9L17 7" stroke="#C7473F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <div style="margin-top:12px; padding-left:50px;">
+            <div style="background:#FFFFFF; border:1px solid #DCE1F5; border-radius:11px; padding:11px 14px; font-size:13px; color:#14151B; font-weight:600;">
+              Você procura algo para começar ou já trabalha com isso?
+            </div>
+
+            <div style="font-size:10.5px; font-weight:700; letter-spacing:0.06em; color:#7D87B8; margin-top:14px; margin-bottom:8px;">ALTERNATIVAS (MÁX. 5)</div>
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <div style="display:flex; align-items:center; gap:8px; background:#FFFFFF; border:1px solid #DCE1F5; border-radius:9px; padding:8px 10px;">
+                <span style="flex:1; font-size:12px; color:#14151B; font-weight:500;">Estou começando</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#9297A3" stroke-width="2"/></svg>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; background:#FFFFFF; border:1px solid #DCE1F5; border-radius:9px; padding:8px 10px;">
+                <span style="flex:1; font-size:12px; color:#14151B; font-weight:500;">Já trabalho com isso</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#9297A3" stroke-width="2"/></svg>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; border:1px dashed #C7CCD6; border-radius:9px; padding:8px 10px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#8A8F9C" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span style="font-size:12px; color:#8A8F9C; font-weight:600;">Adicionar alternativa</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; background:#F0F1F4; border-radius:9px; padding:8px 10px;">
+                <span style="flex:1; font-size:12px; color:#7D87B8; font-weight:600;">Outro</span>
+                <span style="font-size:10px; color:#9297A3;">fixo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- right: live preview -->
+    <div style="width:44%; background:#F0F1F4; display:flex; align-items:center; justify-content:center; border-left:1px solid #EDEEF2;">
+      <div style="width:270px; height:560px; border-radius:32px; background:#33121C; border:1px solid #E5E8EE; box-shadow:0 30px 60px -24px rgba(20,21,27,0.28); display:flex; flex-direction:column; overflow:hidden;">
+
+        <div style="display:flex; align-items:center; gap:9px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div style="width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#E8C77A,#C9536B); display:flex; align-items:center; justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 5 5 1.6-5 1.6-1.6 5-1.6-5-5-1.6 5-1.6L12 3z" stroke="#33121C" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="font-size:11.5px; font-weight:700; color:#F5EDE4;">Assistente da Marina</div>
+        </div>
+
+        <div style="flex:1; padding:16px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; flex-direction:column; gap:8px; opacity:0.45;">
+            <div style="display:flex; gap:8px; align-items:flex-start;">
+              <div style="width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#E8C77A,#C9536B); flex-shrink:0;"></div>
+              <div style="background:#3E1826; border-radius:11px; border-bottom-left-radius:3px; padding:8px 10px; font-size:10.5px; color:#F5EDE4;">O que você procura?</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:8px; align-items:flex-start;">
+              <div style="width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#E8C77A,#C9536B); flex-shrink:0;"></div>
+              <div style="background:#3E1826; border-radius:11px; border-bottom-left-radius:3px; padding:9px 11px; font-size:11px; color:#F5EDE4; max-width:190px;">Você procura algo para começar ou já trabalha com isso?</div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; padding-left:28px;">
+              <div style="padding:6px 12px; border-radius:999px; border:1.2px solid rgba(232,199,122,0.5); color:#F5EDE4; font-size:10.5px; font-weight:600;">Estou começando</div>
+              <div style="padding:6px 12px; border-radius:999px; border:1.2px solid rgba(232,199,122,0.5); color:#F5EDE4; font-size:10.5px; font-weight:600;">Já trabalho com isso</div>
+              <div style="padding:6px 12px; border-radius:999px; border:1.2px solid rgba(232,199,122,0.5); color:#F5EDE4; font-size:10.5px; font-weight:600;">Outro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>
