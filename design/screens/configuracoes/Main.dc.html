@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+    ::placeholder { color: #B4B8C2; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FFFFFF; display:flex; flex-direction:column;">
+
+  <!-- header -->
+  <div style="display:flex; align-items:center; gap:14px; padding:0 32px; height:76px; min-height:76px; border-bottom:1px solid #EDEEF2;">
+    <div style="width:36px; height:36px; border-radius:10px; background:#F0F1F4; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#4B4F5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div style="font-weight:700; font-size:16px; color:#14151B;">Configurações</div>
+  </div>
+
+  <!-- body -->
+  <div style="flex:1; display:flex;">
+
+    <!-- left: settings list -->
+    <div style="width:270px; border-right:1px solid #EDEEF2; padding:24px 16px; display:flex; flex-direction:column; gap:2px;">
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; background:#F5F7FF;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="{{accent}}" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span style="font-size:13px; font-weight:700; color:{{accent}};">Minha conta</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="#5A5F6C" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 8v8l8 4 8-4V8" stroke="#5A5F6C" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#3D414C;">Plano</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="#5A5F6C" stroke-width="1.7"/><path d="M3 10h18" stroke="#5A5F6C" stroke-width="1.7"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#3D414C;">Pagamento</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="#5A5F6C" stroke-width="1.7"/><circle cx="15" cy="15" r="4.4" stroke="#5A5F6C" stroke-width="1.7"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#3D414C;">Domínio</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="#5A5F6C" stroke-width="1.7"/><path d="M8 11V8a4 4 0 018 0v3" stroke="#5A5F6C" stroke-width="1.7"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#3D414C;">Segurança</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="#5A5F6C" stroke-width="1.9" stroke-linecap="round"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#3D414C;">Preferências</span>
+      </div>
+
+      <div style="height:1px; background:#EEF0F5; margin:10px 14px;"></div>
+
+      <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="#C1524A" stroke-width="1.7" stroke-linecap="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="#C1524A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:13px; font-weight:600; color:#C1524A;">Sair</span>
+      </div>
+    </div>
+
+    <!-- right: minha conta -->
+    <div style="flex:1; padding:36px 48px; max-width:520px;">
+      <div style="font-size:19px; font-weight:800; color:#14151B; margin-bottom:4px;">Minha conta</div>
+      <div style="font-size:13px; color:#8A8F9C; margin-bottom:28px;">Informações básicas da sua conta no Linkaê.</div>
+
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px;">
+        <div style="width:64px; height:64px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; position:relative;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="{{accent}}" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13.5px; font-weight:700; color:#14151B;">Marina Silva</div>
+          <div style="font-size:12px; color:{{accent}}; font-weight:600; cursor:pointer; margin-top:4px;">Alterar foto</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">NOME</div>
+          <input value="Marina Silva" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+        </div>
+        <div>
+          <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">E-MAIL</div>
+          <input value="marina@email.com" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+        </div>
+      </div>
+
+      <button style="margin-top:26px; background:{{accent}}; color:#FFFFFF; border:none; padding:13px 26px; border-radius:11px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:13.5px; cursor:pointer; box-shadow:0 10px 20px -10px rgba(1,21,173,0.45);">Salvar alterações</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>
