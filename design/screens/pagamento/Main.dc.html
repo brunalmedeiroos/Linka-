@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Baloo+2:wght@700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+    ::placeholder { color: #B4B8C2; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#F7F8FA; display:flex; flex-direction:column; align-items:center;">
+
+  <!-- header -->
+  <div style="width:100%; display:flex; align-items:center; justify-content:space-between; padding:28px 48px;">
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="font-family:'Baloo 2', sans-serif; font-weight:800; font-size:21px; color:{{accent}};">link</span>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="{{accent}}" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="{{accent}}" stroke-width="2.4"/></svg>
+      <span style="font-family:'Baloo 2', sans-serif; font-weight:800; font-size:21px; color:{{accent}};">aê</span>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="width:20px; height:20px; border-radius:50%; background:{{accent}}; display:flex; align-items:center; justify-content:center;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span style="font-size:12px; font-weight:700; color:{{accent}};">Cadastro</span>
+      </div>
+      <div style="width:24px; height:1.5px; background:#DDE1E7;"></div>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="width:20px; height:20px; border-radius:50%; background:{{accent}}; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#fff;">2</div>
+        <span style="font-size:12px; font-weight:700; color:{{accent}};">Pagamento</span>
+      </div>
+      <div style="width:24px; height:1.5px; background:#DDE1E7;"></div>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div style="width:20px; height:20px; border-radius:50%; background:#EEF0F5; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#B4B8C2;">3</div>
+        <span style="font-size:12px; font-weight:700; color:#B4B8C2;">Bem-vindo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- card -->
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 0;">
+    <div style="width:460px; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:22px; padding:34px 38px; box-shadow:0 30px 60px -34px rgba(20,21,27,0.2);">
+
+      <div style="font-size:23px; font-weight:800; color:#14151B; margin-bottom:6px;">Finalize sua assinatura</div>
+      <div style="font-size:13px; color:#8A8F9C; margin-bottom:22px;">Plano 2 · Concierge IA, Analytics e liberdade total.</div>
+
+      <!-- billing toggle -->
+      <div style="display:flex; background:#F0F1F4; border-radius:12px; padding:4px; margin-bottom:22px;">
+        <div style="flex:1; text-align:center; padding:10px; border-radius:9px; font-size:12.5px; font-weight:700; color:#6B7080;">Mensal · R$59,90</div>
+        <div style="flex:1; text-align:center; padding:10px; border-radius:9px; background:#FFFFFF; box-shadow:0 4px 10px -4px rgba(20,21,27,0.15); font-size:12.5px; font-weight:700; color:#14151B; display:flex; align-items:center; justify-content:center; gap:6px;">
+          Anual · R$599
+          <span style="background:#E4F5EC; color:#1E9E6B; font-size:9.5px; font-weight:800; padding:2px 6px; border-radius:999px;">-17%</span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div>
+          <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">NÚMERO DO CARTÃO</div>
+          <input placeholder="0000 0000 0000 0000" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+        </div>
+        <div>
+          <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">NOME NO CARTÃO</div>
+          <input placeholder="Como está impresso no cartão" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+        </div>
+        <div style="display:flex; gap:12px;">
+          <div style="flex:1;">
+            <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">VALIDADE</div>
+            <input placeholder="MM/AA" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11.5px; font-weight:700; color:#4B4F5A; margin-bottom:6px;">CVV</div>
+            <input placeholder="123" style="width:100%; padding:13px 14px; border-radius:11px; border:1px solid #E3E5EB; font-family:'Montserrat',sans-serif; font-size:13.5px; color:#14151B;" />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:1px solid #EEF0F5;">
+        <span style="font-size:13px; font-weight:600; color:#6B7080;">Total hoje</span>
+        <span style="font-size:19px; font-weight:800; color:#14151B;">R$599,00</span>
+      </div>
+
+      <button style="width:100%; margin-top:18px; background:{{accent}}; color:#FFFFFF; border:none; padding:15px; border-radius:12px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; cursor:pointer; box-shadow:0 12px 24px -12px rgba(1,21,173,0.45);">Confirmar assinatura</button>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:16px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="#9297A3" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span style="font-size:11.5px; color:#9297A3; font-weight:600;">7 dias de garantia. Reembolso conforme nossas regras.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0115AD","options":["#0115AD","#1830C4","#0A0F7A"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0115AD' };
+  }
+}
+</script>
+</body>
+</html>
