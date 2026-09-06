@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', system-ui, sans-serif; }
+  </style>
+</helmet>
+
+<div style="width:100%; height:100%; min-height:900px; background:#FBFBFD; display:flex; flex-direction:column; position:relative; overflow:hidden;">
+
+  <!-- header -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 32px; height:76px; min-height:76px; border-bottom:1px solid #EDEEF2; background:#FFFFFF;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:36px; height:36px; border-radius:10px; background:#F0F1F4; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#4B4F5A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:16px; color:#14151B;">Analytics</div>
+        <div style="font-size:11.5px; color:#9297A3;">Vitrine de Marina</div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:7px; background:#F0F1F4; border-radius:11px; padding:9px 14px; cursor:pointer;">
+      <span style="font-size:12.5px; font-weight:600; color:#14151B;">Últimos 30 dias</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#5A5F6C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div style="flex:1; padding:28px 40px; display:flex; flex-direction:column; gap:22px; overflow:hidden;">
+
+    <!-- KPIs -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+      <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:18px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.04em; color:#9297A3;">VISUALIZAÇÕES</div>
+        <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+          <span style="font-size:25px; font-weight:800; color:#14151B;">3.842</span>
+          <span style="display:flex; align-items:center; gap:2px; font-size:11.5px; font-weight:700; color:#1E9E6B;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 15l6-6 6 6" stroke="#1E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            18%
+          </span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:18px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.04em; color:#9297A3;">CLIQUES</div>
+        <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+          <span style="font-size:25px; font-weight:800; color:#14151B;">1.290</span>
+          <span style="display:flex; align-items:center; gap:2px; font-size:11.5px; font-weight:700; color:#1E9E6B;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 15l6-6 6 6" stroke="#1E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            9%
+          </span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:18px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.04em; color:#9297A3;">CONVERSAS NO CONCIERGE</div>
+        <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+          <span style="font-size:25px; font-weight:800; color:#14151B;">214</span>
+          <span style="display:flex; align-items:center; gap:2px; font-size:11.5px; font-weight:700; color:#1E9E6B;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 15l6-6 6 6" stroke="#1E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            32%
+          </span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:18px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.04em; color:#9297A3;">TAXA DE CONVERSÃO</div>
+        <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+          <span style="font-size:25px; font-weight:800; color:#14151B;">5,6%</span>
+          <span style="display:flex; align-items:center; gap:2px; font-size:11.5px; font-weight:700; color:#C1524A;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#C1524A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            2%
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- insights -->
+    <div style="display:flex; gap:16px;">
+      <div style="flex:1; display:flex; align-items:center; gap:12px; background:#F5F7FF; border:1px solid #DCE1F5; border-radius:14px; padding:15px 16px;">
+        <div style="width:34px; height:34px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="#0115AD" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 8v8l8 4 8-4V8" stroke="#0115AD" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:13px; font-weight:600; color:#14151B; line-height:1.4;">Produtos é o bloco mais clicado esta semana.</div>
+      </div>
+      <div style="flex:1; display:flex; align-items:center; gap:12px; background:#F5F7FF; border:1px solid #DCE1F5; border-radius:14px; padding:15px 16px;">
+        <div style="width:34px; height:34px; border-radius:10px; background:#E4E9FA; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.6L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.4L12 3z" stroke="#0115AD" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:13px; font-weight:600; color:#14151B; line-height:1.4;">O Concierge guiou 96 visitantes até um produto.</div>
+      </div>
+    </div>
+
+    <!-- two column -->
+    <div style="display:flex; gap:20px; flex:1; min-height:0;">
+
+      <!-- left: mais acessados -->
+      <div style="width:58%; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:20px;">
+
+        <div>
+          <div style="font-size:12px; font-weight:700; color:#4B4F5A; margin-bottom:12px;">PRODUTOS MAIS ACESSADOS</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">Creators Club</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:100%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">412</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">E-book UGC</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:65%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">268</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">Mentoria 1:1</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:37%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">154</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:1px; background:#EEF0F5;"></div>
+
+        <div>
+          <div style="font-size:12px; font-weight:700; color:#4B4F5A; margin-bottom:12px;">LINKS MAIS ACESSADOS</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">Instagram</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:100%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">380</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">WhatsApp</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:63%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">240</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:120px; font-size:12px; font-weight:600; color:#14151B; flex-shrink:0;">Meu Portfólio</div>
+              <div style="flex:1; height:7px; background:#EEF0F5; border-radius:999px; overflow:hidden;"><div style="width:25%; height:100%; background:#0115AD; border-radius:999px;"></div></div>
+              <div style="width:36px; text-align:right; font-size:11.5px; font-weight:700; color:#9297A3;">96</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: concierge funnel -->
+      <div style="width:42%; background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:12px; font-weight:700; color:#4B4F5A;">INTERAÇÕES COM O CONCIERGE</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11.5px; color:#4B4F5A; font-weight:600; margin-bottom:5px;"><span>Iniciaram</span><span>320</span></div>
+            <div style="height:24px; width:100%; background:#0115AD; border-radius:8px;"></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11.5px; color:#4B4F5A; font-weight:600; margin-bottom:5px;"><span>Completaram</span><span>214</span></div>
+            <div style="height:24px; width:67%; background:#3D57C4; border-radius:8px;"></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11.5px; color:#4B4F5A; font-weight:600; margin-bottom:5px;"><span>Chegaram a um produto</span><span>96</span></div>
+            <div style="height:24px; width:30%; background:#8497DB; border-radius:8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- caminhos -->
+    <div style="background:#FFFFFF; border:1px solid #E5E8EE; border-radius:16px; padding:22px;">
+      <div style="font-size:12px; font-weight:700; color:#4B4F5A; margin-bottom:14px;">CAMINHOS MAIS USADOS</div>
+      <div style="display:flex; flex-direction:column; gap:11px;">
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#14151B;">
+            <span>Perfil</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#C7CCD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Concierge</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#C7CCD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="color:#0115AD;">Creators Club</span>
+          </div>
+          <div style="font-size:11.5px; font-weight:700; color:#9297A3;">42 visitantes</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#14151B;">
+            <span>Perfil</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#C7CCD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Produtos</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#C7CCD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="color:#0115AD;">E-book UGC</span>
+          </div>
+          <div style="font-size:11.5px; font-weight:700; color:#9297A3;">27 visitantes</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#14151B;">
+            <span>Perfil</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#C7CCD6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="color:#0115AD;">Instagram</span>
+          </div>
+          <div style="font-size:11.5px; font-weight:700; color:#9297A3;">19 visitantes</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
