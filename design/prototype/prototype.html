@@ -175,6 +175,53 @@
     </div>
   </div>
 
+  <div style="padding:clamp(56px,8vw,96px) clamp(20px,6vw,120px); background:var(--bg-2);">
+    <div style="text-align:center; margin-bottom:48px;"><div style="font-size:12px; font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:14px;">DÚVIDAS FREQUENTES</div><div style="font-size:clamp(24px,4vw,34px); font-weight:800;">Perguntas frequentes</div></div>
+    <div style="max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:12px;">
+
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div onclick="toggleFaq(1)" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; cursor:pointer;">
+          <span style="font-size:14.5px; font-weight:700;">Preciso saber programar ou design pra usar o Linkaê?</span>
+          <svg id="faq-chevron-1" style="flex-shrink:0; transition:transform .15s; transform:rotate(180deg);" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="var(--blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div id="faq-answer-1" style="padding:0 22px 20px; font-size:13px; color:var(--text-4); line-height:1.6;">Não. O editor foi pensado pra ser simples — sem cursos longos, sem complicação. Se precisar de ajuda, um tutorial rápido te orienta.</div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div onclick="toggleFaq(2)" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; cursor:pointer;">
+          <span style="font-size:14.5px; font-weight:700;">Posso usar mesmo sem vender produtos?</span>
+          <svg id="faq-chevron-2" style="flex-shrink:0; transition:transform .15s;" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="var(--text-6)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div id="faq-answer-2" hidden style="padding:0 22px 20px; font-size:13px; color:var(--text-4); line-height:1.6;">Sim. Você monta a vitrine só com o que fizer sentido pra você — nada é obrigatório além do essencial.</div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div onclick="toggleFaq(3)" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; cursor:pointer;">
+          <span style="font-size:14.5px; font-weight:700;">O que é o Concierge IA?</span>
+          <svg id="faq-chevron-3" style="flex-shrink:0; transition:transform .15s;" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="var(--text-6)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div id="faq-answer-3" hidden style="padding:0 22px 20px; font-size:13px; color:var(--text-4); line-height:1.6;">É um assistente que ajuda cada visitante a encontrar o que procura, usando só o que você cadastrou na sua vitrine — ele nunca inventa produtos ou links.</div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div onclick="toggleFaq(4)" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; cursor:pointer;">
+          <span style="font-size:14.5px; font-weight:700;">Tem plano gratuito?</span>
+          <svg id="faq-chevron-4" style="flex-shrink:0; transition:transform .15s;" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="var(--text-6)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div id="faq-answer-4" hidden style="padding:0 22px 20px; font-size:13px; color:var(--text-4); line-height:1.6;">Não, mas você tem 7 dias de garantia pra testar sem risco.</div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div onclick="toggleFaq(5)" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; cursor:pointer;">
+          <span style="font-size:14.5px; font-weight:700;">Posso trocar de plano depois?</span>
+          <svg id="faq-chevron-5" style="flex-shrink:0; transition:transform .15s;" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="var(--text-6)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div id="faq-answer-5" hidden style="padding:0 22px 20px; font-size:13px; color:var(--text-4); line-height:1.6;">Sim, você pode migrar de plano quando quiser dentro da plataforma.</div>
+      </div>
+
+    </div>
+  </div>
+
   <div style="padding:clamp(56px,8vw,100px) clamp(20px,6vw,120px); text-align:center;">
     <div style="font-size:clamp(26px,4.5vw,38px); font-weight:800; max-width:640px; margin:0 auto; line-height:1.25;">Sua bio merece mais que uma lista de links.</div>
     <button class="btn btn-primary" style="margin-top:30px; padding:17px 34px; font-size:15px;" onclick="goTo('cadastro')">Criar minha vitrine</button>
@@ -842,6 +889,17 @@
       reason: 'Porque foi criada pra quem já atua e quer um acompanhamento mais próximo.'
     }
   };
+  function toggleFaq(n){
+    var ans = document.getElementById('faq-answer-' + n);
+    var chev = document.getElementById('faq-chevron-' + n);
+    var willOpen = ans.hidden;
+    ans.hidden = !willOpen;
+    if(chev){
+      chev.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      chev.querySelector('path').setAttribute('stroke', willOpen ? 'var(--blue)' : 'var(--text-6)');
+    }
+  }
+
   var SETTINGS_PANELS = ['conta','plano','pagamento','dominio','seguranca','preferencias'];
   function showSettingsPanel(name){
     SETTINGS_PANELS.forEach(function(p){
