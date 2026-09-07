@@ -355,12 +355,43 @@
           <div>
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
               <div class="label" style="margin-bottom:0;">SENHA</div>
-              <span onclick="showToast('Isso abriria a recuperação de senha.')" style="font-size:11.5px; color:var(--blue); font-weight:600; cursor:pointer;">Esqueceu sua senha?</span>
+              <span onclick="goToRecovery()" style="font-size:11.5px; color:var(--blue); font-weight:600; cursor:pointer;">Esqueceu sua senha?</span>
             </div>
             <input class="input" type="password" placeholder="Sua senha" />
           </div>
         </div>
         <button class="btn btn-primary btn-block" style="margin-top:24px; padding:15px;" onclick="goTo('meulinkae')">Entrar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECUPERAR SENHA ============ -->
+<section id="s-recuperarsenha" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg-2); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; flex-wrap:wrap; row-gap:10px; justify-content:space-between; padding:24px clamp(16px,5vw,48px);">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="font-size:13px; color:var(--text-4); font-weight:500;">Lembrou sua senha? <span onclick="goTo('login')" style="color:var(--blue); font-weight:700; cursor:pointer;">Entrar</span></div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 20px;">
+      <div class="card" style="width:400px; max-width:100%; padding:38px clamp(20px,5vw,40px); box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
+
+        <div id="recovery-form">
+          <div style="font-size:23px; font-weight:800; margin-bottom:6px;">Recuperar senha</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:26px;">Digite seu e-mail e enviaremos um link para redefinir sua senha.</div>
+          <div><div class="label">E-MAIL</div><input id="recovery-email-input" class="input" placeholder="voce@email.com" /></div>
+          <button class="btn btn-primary btn-block" style="margin-top:24px; padding:15px;" onclick="sendRecovery()">Enviar link de recuperação</button>
+          <div style="text-align:center; margin-top:18px;"><span onclick="goTo('login')" style="font-size:12.5px; color:var(--text-5); font-weight:600; cursor:pointer;">← Voltar para o login</span></div>
+        </div>
+
+        <div id="recovery-sent" hidden style="text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:var(--tint); border:1px solid var(--tint-border); display:flex; align-items:center; justify-content:center; margin:0 auto 20px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.4" stroke="var(--blue)" stroke-width="2.2"/><circle cx="15" cy="15" r="5.4" stroke="var(--blue)" stroke-width="2.2"/></svg></div>
+          <div style="font-size:20px; font-weight:800; margin-bottom:10px;">Verifique seu e-mail</div>
+          <div style="font-size:13px; color:var(--text-5); line-height:1.6; margin-bottom:22px;">Enviamos um link de recuperação para <strong id="recovery-email-echo" style="color:var(--text);">voce@email.com</strong>. Clique nele para criar uma nova senha.</div>
+          <div style="font-size:12.5px; color:var(--text-5);">Não recebeu? <span onclick="showToast('Link reenviado.')" style="color:var(--blue); font-weight:700; cursor:pointer;">Reenviar</span></div>
+          <div style="margin-top:18px;"><span onclick="goTo('login')" style="font-size:12.5px; color:var(--text-5); font-weight:600; cursor:pointer;">← Voltar para o login</span></div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -836,6 +867,7 @@
     <button onclick="goTo('landing')">Landing Page</button>
     <button onclick="goTo('cadastro')">Cadastro</button>
     <button onclick="goTo('login')">Login</button>
+    <button onclick="goTo('recuperarsenha')">Recuperar senha</button>
     <button onclick="goTo('pagamento')">Pagamento</button>
     <button onclick="goTo('bemvindo')">Bem-vindo</button>
     <button onclick="goTo('onboarding')">Onboarding</button>
@@ -968,6 +1000,18 @@
       label.style.color = 'var(--text)';
       on.hidden = false; off.hidden = true;
     }
+  }
+  function goToRecovery(){
+    document.getElementById('recovery-form').hidden = false;
+    document.getElementById('recovery-sent').hidden = true;
+    document.getElementById('recovery-email-input').value = '';
+    goTo('recuperarsenha');
+  }
+  function sendRecovery(){
+    var email = document.getElementById('recovery-email-input').value.trim() || 'voce@email.com';
+    document.getElementById('recovery-email-echo').textContent = email;
+    document.getElementById('recovery-form').hidden = true;
+    document.getElementById('recovery-sent').hidden = false;
   }
   function openConcierge(){
     document.getElementById('chat-step-question').hidden = false;
