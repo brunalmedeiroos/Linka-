@@ -236,9 +236,17 @@
       <div class="card" style="width:460px; max-width:100%; padding:34px clamp(20px,5vw,38px); box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
         <div style="font-size:23px; font-weight:800; margin-bottom:6px;">Finalize sua assinatura</div>
         <div id="pagamento-plan-desc" style="font-size:13px; color:var(--text-5); margin-bottom:22px;">Plano 2 · Concierge IA, Analytics e liberdade total.</div>
-        <div style="display:flex; background:var(--bg-3); border-radius:12px; padding:4px; margin-bottom:22px;">
-          <div id="pagamento-monthly-label" style="flex:1; text-align:center; padding:10px; border-radius:9px; font-size:12.5px; font-weight:700; color:var(--text-4);">Mensal · R$59,90</div>
-          <div style="flex:1; text-align:center; padding:10px; border-radius:9px; background:#fff; box-shadow:0 4px 10px -4px rgba(20,21,27,.15); font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:6px;"><span id="pagamento-annual-label">Anual · R$599</span> <span style="background:var(--green-bg); color:var(--green); font-size:9.5px; font-weight:800; padding:2px 6px; border-radius:999px;">-17%</span></div>
+        <div style="display:flex; gap:10px; margin-bottom:22px;">
+          <div id="billing-card-mensal" onclick="selectBilling('mensal')" style="flex:1; cursor:pointer; border:1.5px solid var(--border); border-radius:14px; padding:12px 14px; position:relative;">
+            <div id="billing-check-mensal" style="display:none; position:absolute; top:10px; right:10px; width:18px; height:18px; border-radius:50%; background:var(--blue); align-items:center; justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div id="billing-label-mensal" style="font-size:11px; font-weight:700; color:var(--text-5); margin-bottom:4px;">MENSAL</div>
+            <div style="font-size:15px; font-weight:800; color:var(--text);"><span id="pagamento-monthly-label">R$59,90</span><span style="font-size:11px; font-weight:600; color:var(--text-6);">/mês</span></div>
+          </div>
+          <div id="billing-card-anual" onclick="selectBilling('anual')" style="flex:1; cursor:pointer; border:2px solid var(--blue); background:var(--tint); border-radius:14px; padding:12px 14px; position:relative;">
+            <div id="billing-check-anual" style="position:absolute; top:10px; right:10px; width:18px; height:18px; border-radius:50%; background:var(--blue); display:flex; align-items:center; justify-content:center;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;"><span id="billing-label-anual" style="font-size:11px; font-weight:700; color:var(--blue);">ANUAL</span><span style="background:var(--green-bg); color:var(--green); font-size:9px; font-weight:800; padding:2px 6px; border-radius:999px;">-17%</span></div>
+            <div style="font-size:15px; font-weight:800; color:var(--text);"><span id="pagamento-annual-label">R$599</span><span style="font-size:11px; font-weight:600; color:var(--text-6);">/ano</span></div>
+          </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div><div class="label">NÚMERO DO CARTÃO</div><input class="input" placeholder="0000 0000 0000 0000" /></div>
@@ -627,14 +635,20 @@
 
 <script>
   var PLANS = {
-    'Plano 1': { monthly: 'R$29,90', annual: 'R$299', total: 'R$299,00', desc: 'Plano 1 · Bio profissional e vitrine de produtos.' },
-    'Plano 2': { monthly: 'R$59,90', annual: 'R$599', total: 'R$599,00', desc: 'Plano 2 · Concierge IA, Analytics e liberdade total.' }
+    'Plano 1': { monthly: 'R$29,90', annual: 'R$299', annualTotal: 'R$299,00', desc: 'Plano 1 · Bio profissional e vitrine de produtos.' },
+    'Plano 2': { monthly: 'R$59,90', annual: 'R$599', annualTotal: 'R$599,00', desc: 'Plano 2 · Concierge IA, Analytics e liberdade total.' }
   };
   var selectedPlan = 'Plano 2';
+  var selectedBilling = 'anual';
 
   function choosePlan(plan){
     selectedPlan = plan;
     goTo('cadastro');
+  }
+
+  function selectBilling(cycle){
+    selectedBilling = cycle;
+    renderPlan();
   }
 
   function renderPlan(){
@@ -644,11 +658,39 @@
     var desc = document.getElementById('pagamento-plan-desc');
     if(desc) desc.textContent = p.desc;
     var monthly = document.getElementById('pagamento-monthly-label');
-    if(monthly) monthly.textContent = 'Mensal · ' + p.monthly;
+    if(monthly) monthly.textContent = p.monthly;
     var annual = document.getElementById('pagamento-annual-label');
-    if(annual) annual.textContent = 'Anual · ' + p.annual;
+    if(annual) annual.textContent = p.annual;
     var total = document.getElementById('pagamento-total');
-    if(total) total.textContent = p.total;
+    if(total) total.textContent = selectedBilling === 'anual' ? p.annualTotal : p.monthly;
+
+    var cardMensal = document.getElementById('billing-card-mensal');
+    var cardAnual = document.getElementById('billing-card-anual');
+    var checkMensal = document.getElementById('billing-check-mensal');
+    var checkAnual = document.getElementById('billing-check-anual');
+    var labelMensal = document.getElementById('billing-label-mensal');
+    var labelAnual = document.getElementById('billing-label-anual');
+    if(cardMensal && cardAnual){
+      if(selectedBilling === 'mensal'){
+        cardMensal.style.border = '2px solid var(--blue)';
+        cardMensal.style.background = 'var(--tint)';
+        cardAnual.style.border = '1.5px solid var(--border)';
+        cardAnual.style.background = 'transparent';
+        if(checkMensal) checkMensal.style.display = 'flex';
+        if(checkAnual) checkAnual.style.display = 'none';
+        if(labelMensal) labelMensal.style.color = 'var(--blue)';
+        if(labelAnual) labelAnual.style.color = 'var(--text-5)';
+      } else {
+        cardAnual.style.border = '2px solid var(--blue)';
+        cardAnual.style.background = 'var(--tint)';
+        cardMensal.style.border = '1.5px solid var(--border)';
+        cardMensal.style.background = 'transparent';
+        if(checkMensal) checkMensal.style.display = 'none';
+        if(checkAnual) checkAnual.style.display = 'flex';
+        if(labelAnual) labelAnual.style.color = 'var(--blue)';
+        if(labelMensal) labelMensal.style.color = 'var(--text-5)';
+      }
+    }
   }
 
   function goTo(id){
