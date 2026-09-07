@@ -487,7 +487,71 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary" style="padding:15px 40px;" onclick="goTo('meulinkae')">Continuar</button>
+      <button class="btn btn-primary" style="padding:15px 40px;" onclick="goTo('onboarding-identidade')">Continuar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING — IDENTIDADE (PASSO 2) ============ -->
+<section id="s-onboarding-identidade" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; flex-wrap:wrap; row-gap:12px; justify-content:space-between; padding:24px clamp(16px,5vw,48px);">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--bg-4);"></div><span style="font-size:11.5px; color:var(--text-6); font-weight:600; margin-left:6px;">Passo 2 de 3</span></div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 20px 60px; min-height:600px;">
+      <div class="card" style="width:440px; max-width:100%; padding:38px clamp(20px,5vw,40px); box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
+        <div style="font-size:23px; font-weight:800; margin-bottom:6px; text-align:center;">Sua identidade</div>
+        <div style="font-size:13px; color:var(--text-5); margin-bottom:26px; text-align:center;">Foto, nome e uma bio curta. Você pode mudar tudo depois no editor.</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:24px;">
+          <div onclick="showToast('Isso abriria a seleção de foto.')" style="width:84px; height:84px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <div style="position:absolute; bottom:0; right:0; width:26px; height:26px; border-radius:50%; background:var(--blue); border:2px solid #fff; display:flex; align-items:center; justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+          </div>
+          <span onclick="showToast('Isso abriria a seleção de foto.')" style="font-size:12px; color:var(--blue); font-weight:600; cursor:pointer;">Adicionar foto</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div><div class="label">NOME</div><input class="input" value="Marina Silva" /></div>
+          <div><div class="label">BIO CURTA</div><textarea class="input" rows="3" style="resize:none;" placeholder="Conte em uma frase o que você faz">Criadora de conteúdo · UGC</textarea></div>
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top:24px; padding:15px;" onclick="goTo('onboarding-links')">Continuar</button>
+        <div style="text-align:center; margin-top:16px;"><span onclick="goTo('onboarding')" style="font-size:12.5px; color:var(--text-5); font-weight:600; cursor:pointer;">← Voltar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING — PRIMEIROS LINKS (PASSO 3) ============ -->
+<section id="s-onboarding-links" class="screen" hidden>
+  <div style="min-height:100%; background:var(--bg); display:flex; flex-direction:column; align-items:center;">
+    <div style="width:100%; display:flex; align-items:center; flex-wrap:wrap; row-gap:12px; justify-content:space-between; padding:24px clamp(16px,5vw,48px);">
+      <div class="logo"><span>link</span><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="5.2" stroke="var(--blue)" stroke-width="2.4"/><circle cx="15" cy="15" r="5.2" stroke="var(--blue)" stroke-width="2.4"/></svg><span>aê</span></div>
+      <div style="display:flex; align-items:center; gap:8px;"><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><div style="width:26px; height:6px; border-radius:999px; background:var(--blue);"></div><span style="font-size:11.5px; color:var(--text-6); font-weight:600; margin-left:6px;">Passo 3 de 3</span></div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; width:100%; padding:20px 20px 60px; min-height:600px;">
+      <div class="card" style="width:440px; max-width:100%; padding:38px clamp(20px,5vw,40px); box-shadow:0 30px 60px -34px rgba(20,21,27,.2);">
+        <div style="font-size:23px; font-weight:800; margin-bottom:6px; text-align:center;">Seus primeiros links</div>
+        <div style="font-size:13px; color:var(--text-5); margin-bottom:26px; text-align:center;">Adicione suas redes e contato agora, ou pule e adicione depois no editor.</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:12px; border:1px solid var(--border); border-radius:14px; padding:12px 14px;">
+            <div style="width:38px; height:38px; border-radius:10px; background:var(--bg-3); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="var(--text-3)" stroke-width="1.7"/><circle cx="12" cy="12" r="3.6" stroke="var(--text-3)" stroke-width="1.7"/></svg></div>
+            <input class="input" style="border:none; padding:4px 0; flex:1;" placeholder="@seu_instagram" />
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; border:1px solid var(--border); border-radius:14px; padding:12px 14px;">
+            <div style="width:38px; height:38px; border-radius:10px; background:var(--bg-3); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19l1.3-3.6A7 7 0 1112 19a7 7 0 01-3.6-1L5 19z" stroke="var(--text-3)" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <input class="input" style="border:none; padding:4px 0; flex:1;" placeholder="Número do WhatsApp" />
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; border:1px solid var(--border); border-radius:14px; padding:12px 14px;">
+            <div style="width:38px; height:38px; border-radius:10px; background:var(--bg-3); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 18V6l9 6-9 6z" stroke="var(--text-3)" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <input class="input" style="border:none; padding:4px 0; flex:1;" placeholder="@seu_tiktok" />
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top:24px; padding:15px;" onclick="goTo('meulinkae')">Concluir</button>
+        <div style="text-align:center; margin-top:16px; display:flex; align-items:center; justify-content:center; gap:18px;">
+          <span onclick="goTo('onboarding-identidade')" style="font-size:12.5px; color:var(--text-5); font-weight:600; cursor:pointer;">← Voltar</span>
+          <span onclick="goTo('meulinkae')" style="font-size:12.5px; color:var(--text-5); font-weight:600; cursor:pointer;">Pular por agora</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -870,7 +934,9 @@
     <button onclick="goTo('recuperarsenha')">Recuperar senha</button>
     <button onclick="goTo('pagamento')">Pagamento</button>
     <button onclick="goTo('bemvindo')">Bem-vindo</button>
-    <button onclick="goTo('onboarding')">Onboarding</button>
+    <button onclick="goTo('onboarding')">Onboarding · Passo 1</button>
+    <button onclick="goTo('onboarding-identidade')">Onboarding · Passo 2</button>
+    <button onclick="goTo('onboarding-links')">Onboarding · Passo 3</button>
     <div class="grp">PAINEL DO CREATOR</div>
     <button onclick="goTo('meulinkae')">Meu Linkaê</button>
     <button onclick="goTo('editor')">Editor da vitrine</button>
