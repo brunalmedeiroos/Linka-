@@ -514,21 +514,93 @@
     <div class="header"><div class="header-left"><div class="back-btn" onclick="goTo('meulinkae')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="var(--text-3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="title-block"><div class="t1">Configurações</div></div></div></div>
     <div class="settings-layout" style="flex:1; display:flex;">
       <div class="settings-sidebar" style="width:270px; border-right:1px solid var(--bg-4); padding:16px; display:flex; flex-direction:column; gap:2px;">
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; background:var(--tint);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg><span style="font-size:13px; font-weight:700; color:var(--blue);">Minha conta</span></div>
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="var(--text-3)" stroke-width="1.7" stroke-linejoin="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Plano</span></div>
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Pagamento</span></div>
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/><circle cx="15" cy="15" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Domínio</span></div>
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Segurança</span></div>
-        <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="var(--text-3)" stroke-width="1.9" stroke-linecap="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--text-2);">Preferências</span></div>
+        <div id="settings-nav-conta" onclick="showSettingsPanel('conta')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; background:var(--tint); cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--text-3)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--text-3)" stroke-width="1.8" stroke-linecap="round"/></svg><span id="settings-navtext-conta" style="font-size:13px; font-weight:700; color:var(--blue);">Minha conta</span></div>
+        <div id="settings-nav-plano" onclick="showSettingsPanel('plano')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 8l8-4 8 4-8 4-8-4z" stroke="var(--text-3)" stroke-width="1.7" stroke-linejoin="round"/></svg><span id="settings-navtext-plano" style="font-size:13px; font-weight:600; color:var(--text-2);">Plano</span></div>
+        <div id="settings-nav-pagamento" onclick="showSettingsPanel('pagamento')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span id="settings-navtext-pagamento" style="font-size:13px; font-weight:600; color:var(--text-2);">Pagamento</span></div>
+        <div id="settings-nav-dominio" onclick="showSettingsPanel('dominio')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/><circle cx="15" cy="15" r="4.4" stroke="var(--text-3)" stroke-width="1.7"/></svg><span id="settings-navtext-dominio" style="font-size:13px; font-weight:600; color:var(--text-2);">Domínio</span></div>
+        <div id="settings-nav-seguranca" onclick="showSettingsPanel('seguranca')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/></svg><span id="settings-navtext-seguranca" style="font-size:13px; font-weight:600; color:var(--text-2);">Segurança</span></div>
+        <div id="settings-nav-preferencias" onclick="showSettingsPanel('preferencias')" style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="var(--text-3)" stroke-width="1.9" stroke-linecap="round"/></svg><span id="settings-navtext-preferencias" style="font-size:13px; font-weight:600; color:var(--text-2);">Preferências</span></div>
         <div style="height:1px; background:var(--bg-4); margin:10px 14px;"></div>
         <div style="display:flex; align-items:center; gap:11px; padding:11px 14px; border-radius:11px; cursor:pointer;" onclick="goTo('landing')"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M16 17l5-5-5-5M21 12H9" stroke="var(--red)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-size:13px; font-weight:600; color:var(--red);">Sair</span></div>
       </div>
       <div class="settings-content" style="flex:1; padding:32px clamp(20px,5vw,48px); max-width:520px;">
-        <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Minha conta</div>
-        <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Informações básicas da sua conta no Linkaê.</div>
-        <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px;"><div style="width:64px; height:64px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div style="font-size:13.5px; font-weight:700;">Marina Silva</div><div style="font-size:12px; color:var(--blue); font-weight:600; margin-top:4px;">Alterar foto</div></div></div>
-        <div style="display:flex; flex-direction:column; gap:16px;"><div><div class="label">NOME</div><input class="input" value="Marina Silva" /></div><div><div class="label">E-MAIL</div><input class="input" value="marina@email.com" /></div></div>
-        <button class="btn btn-primary" style="margin-top:26px; padding:13px 26px; font-size:13.5px;" onclick="showToast('Alterações salvas.')">Salvar alterações</button>
+
+        <div id="settings-panel-conta">
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Minha conta</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Informações básicas da sua conta no Linkaê.</div>
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:28px;"><div style="width:64px; height:64px; border-radius:50%; background:#DDE1E7; display:flex; align-items:center; justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="var(--blue)" stroke-width="1.8"/><path d="M5 20c1.4-3.6 4.2-5.4 7-5.4s5.6 1.8 7 5.4" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div style="font-size:13.5px; font-weight:700;">Marina Silva</div><div style="font-size:12px; color:var(--blue); font-weight:600; margin-top:4px; cursor:pointer;" onclick="showToast('Isso abriria o seletor de foto.')">Alterar foto</div></div></div>
+          <div style="display:flex; flex-direction:column; gap:16px;"><div><div class="label">NOME</div><input class="input" value="Marina Silva" /></div><div><div class="label">E-MAIL</div><input class="input" value="marina@email.com" /></div></div>
+          <button class="btn btn-primary" style="margin-top:26px; padding:13px 26px; font-size:13.5px;" onclick="showToast('Alterações salvas.')">Salvar alterações</button>
+        </div>
+
+        <div id="settings-panel-plano" hidden>
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Plano</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Gerencie sua assinatura no Linkaê.</div>
+          <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <div class="chip" style="background:var(--tint); border:1px solid var(--tint-border); color:var(--blue);">Plano 2</div>
+              <span style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--green); font-weight:700;"><span style="width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block;"></span>Ativo</span>
+            </div>
+            <div style="font-size:22px; font-weight:800;">R$59,90<span style="font-size:12px; font-weight:600; color:var(--text-6);">/mês</span></div>
+            <div style="font-size:12px; color:var(--text-5); margin-top:6px;">Próxima cobrança em 15 de outubro de 2026</div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <button class="btn btn-secondary" onclick="showToast('Isso abriria as opções de troca de plano.')">Trocar de plano</button>
+            <button class="btn btn-ghost" style="color:var(--red);" onclick="showToast('Isso abriria o fluxo de cancelamento.')">Cancelar assinatura</button>
+          </div>
+        </div>
+
+        <div id="settings-panel-pagamento" hidden>
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Pagamento</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Forma de pagamento usada nas suas cobranças.</div>
+          <div class="card" style="padding:16px; display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+            <div style="width:44px; height:32px; border-radius:6px; background:var(--bg-3); display:flex; align-items:center; justify-content:center; flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="var(--text-3)" stroke-width="1.7"/><path d="M3 10h18" stroke="var(--text-3)" stroke-width="1.7"/></svg></div>
+            <div>
+              <div style="font-size:13.5px; font-weight:700;">•••• •••• •••• 4242</div>
+              <div style="font-size:12px; color:var(--text-6);">Validade 08/29</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="showToast('Isso abriria a atualização da forma de pagamento.')">Atualizar forma de pagamento</button>
+        </div>
+
+        <div id="settings-panel-dominio" hidden>
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Domínio</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">O endereço da sua vitrine.</div>
+          <div class="label">SEU @</div>
+          <div style="display:flex; align-items:center; border:1.5px solid var(--border-2); border-radius:11px; padding:0 14px; margin-bottom:20px;">
+            <span style="font-size:13.5px; color:var(--text-6); font-weight:600;">linkae.com/@</span>
+            <input value="marinasilva" style="flex:1; min-width:0; border:none; outline:none; padding:13px 0; font-size:13.5px; font-weight:600; color:var(--text);" />
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <button class="btn btn-secondary" onclick="showToast('Link copiado!')">Copiar link</button>
+            <button class="btn btn-primary" onclick="showToast('Alterações salvas.')">Salvar</button>
+          </div>
+        </div>
+
+        <div id="settings-panel-seguranca" hidden>
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Segurança</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:28px;">Altere a senha usada para acessar sua conta.</div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div><div class="label">SENHA ATUAL</div><input class="input" type="password" placeholder="••••••••" /></div>
+            <div><div class="label">NOVA SENHA</div><input class="input" type="password" placeholder="Mínimo de 8 caracteres" /></div>
+            <div><div class="label">CONFIRMAR NOVA SENHA</div><input class="input" type="password" placeholder="Repita a nova senha" /></div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:26px; padding:13px 26px; font-size:13.5px;" onclick="showToast('Senha atualizada.')">Atualizar senha</button>
+        </div>
+
+        <div id="settings-panel-preferencias" hidden>
+          <div style="font-size:19px; font-weight:800; margin-bottom:4px;">Preferências</div>
+          <div style="font-size:13px; color:var(--text-5); margin-bottom:24px;">Como você quer ser avisada.</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--bg-4); gap:16px;">
+            <div><div style="font-size:13.5px; font-weight:600;">Novidades por e-mail</div><div style="font-size:12px; color:var(--text-6); margin-top:2px;">Dicas e atualizações do Linkaê.</div></div>
+            <div id="pref-toggle-1" data-on="true" onclick="togglePref(1)" style="width:38px; height:22px; border-radius:999px; background:var(--blue); position:relative; padding:2px; cursor:pointer; flex-shrink:0;"><div style="width:18px; height:18px; border-radius:50%; background:#fff; margin-left:auto;"></div></div>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px;">
+            <div><div style="font-size:13.5px; font-weight:600;">Novos contatos</div><div style="font-size:12px; color:var(--text-6); margin-top:2px;">Avise quando alguém enviar uma mensagem pela vitrine.</div></div>
+            <div id="pref-toggle-2" data-on="true" onclick="togglePref(2)" style="width:38px; height:22px; border-radius:999px; background:var(--blue); position:relative; padding:2px; cursor:pointer; flex-shrink:0;"><div style="width:18px; height:18px; border-radius:50%; background:#fff; margin-left:auto;"></div></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -770,6 +842,29 @@
       reason: 'Porque foi criada pra quem já atua e quer um acompanhamento mais próximo.'
     }
   };
+  var SETTINGS_PANELS = ['conta','plano','pagamento','dominio','seguranca','preferencias'];
+  function showSettingsPanel(name){
+    SETTINGS_PANELS.forEach(function(p){
+      var panel = document.getElementById('settings-panel-' + p);
+      if(panel) panel.hidden = (p !== name);
+      var nav = document.getElementById('settings-nav-' + p);
+      var text = document.getElementById('settings-navtext-' + p);
+      if(nav) nav.style.background = (p === name) ? 'var(--tint)' : 'transparent';
+      if(text){
+        text.style.color = (p === name) ? 'var(--blue)' : 'var(--text-2)';
+        text.style.fontWeight = (p === name) ? '700' : '600';
+      }
+    });
+  }
+  function togglePref(n){
+    var el = document.getElementById('pref-toggle-' + n);
+    var dot = el.firstElementChild;
+    var on = el.getAttribute('data-on') !== 'true';
+    el.setAttribute('data-on', on);
+    el.style.background = on ? 'var(--blue)' : '#E0E2E8';
+    dot.style.marginLeft = on ? 'auto' : '0';
+    showToast(on ? 'Preferência ativada.' : 'Preferência desativada.');
+  }
   function showRecommendation(choice){
     var r = RECOMMENDATIONS[choice] || RECOMMENDATIONS.comecando;
     document.getElementById('reco-answer').textContent = r.answer;
